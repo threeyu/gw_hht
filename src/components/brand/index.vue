@@ -1,0 +1,136 @@
+<template>
+  <!-- 品牌管理 -->
+  <div class="container" style="padding-top:1px;position:relative;">
+
+    <div class="bg-white" :class="classes">
+      <a class="nav-opt" href="#about">
+        <p>关于我们</p>
+        <p>About us</p>
+      </a>
+      <a class="nav-opt" href="#growth">
+        <p>发展历程</p>
+        <p>Growth history</p>
+      </a>
+      <a class="nav-opt" href="#product">
+        <p>产品品质</p>
+        <p>Product quality</p>
+      </a>
+      <a class="nav-opt" href="#honor">
+        <p>企业荣誉</p>
+        <p>Our honor</p>
+      </a>
+      <a class="nav-opt" href="#content">
+        <p>内容体系</p>
+        <p>Content system</p>
+      </a>
+    </div>
+
+    <div class="brand-img">
+      <img src="../../assets/img/brand/banner.png" class="banner" alt="">
+    </div>
+
+    <div class="brand-img" id="about">
+      <img src="../../assets/img/brand/bg-1.png" class="banner" alt="">
+    </div>
+
+    <div class="brand-img" id="growth">
+      <img src="../../assets/img/brand/bg-2.png" class="banner" alt="">
+    </div>
+
+    <div class="brand-img" id="product">
+      <img src="../../assets/img/brand/bg-3.png" class="banner" alt="">
+    </div>
+
+    <div class="brand-img" id="honor">
+      <img src="../../assets/img/brand/bg-4.png" class="banner" alt="">
+    </div>
+
+    <div class="brand-img" id="content">
+      <img src="../../assets/img/brand/bg-5.png" class="banner" alt="">
+    </div>
+
+  </div>
+</template>
+
+<script>
+import { on, off } from '../../utils/dom.js'
+
+export default {
+  data() {
+    return {
+      isFixed: false,
+      ticking: false,
+      minH: 160
+    }
+  },
+  computed: {
+    classes() {
+      return [
+        {
+          [`nav-bar-fiexed`]: this.isFixed,
+          ['nav-bar']: !this.isFixed
+        }
+      ];
+    }
+  },
+  mounted() {
+    on(window, 'scroll', this.handleScroll);
+  },
+  beforeDestroy() {
+    off(window, 'scroll', this.handleScroll);
+  },
+  methods: {
+    handleScroll() {
+      if (!this.ticking) {
+        requestAnimationFrame(this.realFunc);
+        this.ticking = true;
+      }
+    },
+    realFunc() {
+      this.isFixed = window.pageYOffset >= this.minH;
+      this.ticking = false;
+    }
+  }
+}
+</script>
+
+ 
+<style scoped>
+.nav-bar {
+  position: absolute;
+  top: 60px;
+  height: 100px;
+}
+.nav-bar-fiexed {
+  position: fixed;
+  top: 0;
+  height: 100px;
+}
+.nav-opt {
+  float: left;
+  width: 240px;
+  text-align: center;
+  margin-top: 25px;
+}
+.nav-opt > p:first-child {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  color: #575757;
+}
+.nav-opt > p:last-child {
+  margin: 0;
+  font-size: 14px;
+  color: #afafaf;
+}
+.brand-img {
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+}
+.brand-img:nth-child(2) {
+  padding-top: 160px;
+}
+.brand-img:last-child {
+  padding-bottom: 100px;
+}
+</style>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xml:lang="zh-CN">
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta charset="UTF-8">
+	<title>火火兔官网</title>
+	<meta name="description" content="火火兔，大量免费提供原创,在线儿童动画片，儿童歌曲，儿童音乐，动画片下载，儿童文学，儿童故事，童话故事，有声读物，儿童游戏，儿童FLASH，儿童英语，大量儿童教育资源,免费下载！。"
+	/>
+	<meta name="keywords" content="火火兔,故事机,早教机,早教儿歌,胎教音乐,儿童歌曲,儿童故事" />
+	<link rel="stylesheet" href="css/nav&footer.css" />
+	<link rel="stylesheet" href="css/video.css" />
+	<link rel="stylesheet" href="css/videoIndexNav.css" />
+	<link rel="icon" />
+	<link rel="shortcut icon" />
+</head>
+
+<body id="RTop">
+
+	<div class="video-index-nav">
+
+		<div class="nav-content">
+
+			<!-- dev -->
+			<a href="/pages/home">
+				<img class="index-nav-logo" src="img/index/nav_LOGO.png" />
+			</a>
+			<!-- pro -->
+			<!--
+			<a href="../index.html#/pages/home">
+				<img class="index-nav-logo" src="img/index/nav_LOGO.png" />
+			</a>
+			-->
+
+			<ul class="index-nav-nav">
+
+				<!-- dev -->
+				<li>
+					<a href="/pages/home">首页</a>
+				</li>
+				<li>
+					<a href="/pages/products">产品</a>
+				</li>
+				<li>
+					<a href="/pages/content" class="navActive">内容</a>
+				</li>
+				<li>
+					<a href="/pages/brand">品牌</a>
+				</li>
+				<li>
+					<a href="/pages/service">售后</a>
+				</li>
+				<!-- pro -->
+				<!-- 
+				<li>
+					<a href="../index.html#/pages/home">首页</a>
+				</li>
+				<li>
+					<a href="../index.html#/pages/products">产品</a>
+				</li>
+				<li>
+					<a href="../index.html#/pages/content" class="navActive">内容</a>
+				</li>
+				<li>
+					<a href="../index.html#/pages/brand">品牌</a>
+				</li>
+				<li>
+					<a href="../index.html#/pages/service">售后</a>
+				</li>
+				-->
+
+			</ul>
+
+			<!-- <div id="nav-search">
+
+				<input type="text" class="index-seach-text" placeholder="搜索" />
+				<div class="index-seach-btn"></div>
+
+			</div> -->
+
+			<img src="img/index/login-headimg.png" class="nav-login" />
+
+		</div>
+
+	</div>
+	<div class="video">
+
+		<ol class="breadcrumb">
+			<!-- dev -->
+			<li>
+				<a href="/pages/home">首页</a>
+			</li>
+			<li>
+				<a href="/pages/content/contentDetail">看动画</a>
+			</li>
+			<!-- pro -->
+			<!--
+			<li>
+				<a href="../index.html#/pages/home">首页</a>
+			</li>
+			<li>
+				<a href="../index.html#/pages/content/contentDetail">看动画</a>
+			</li>
+			-->
+
+			<li>视频播放</li>
+		</ol>
+
+		<div style="position: absolute;width: 1226px;height: 679px;background: #FFFFFF;">
+
+			<p class="video-name"></p>
+			<div class="video-player" id="videoPlayer"></div>
+			<div class="video-list">
+
+				<div class="video-list-name">
+
+					<p id="video-title"></p>
+					<p id="video-episode-count"></p>
+					<select id="video-episode-count-select">
+
+						<option>1-100</option>
+						<option>101-200</option>
+
+					</select>
+
+				</div>
+				<div class="video-list-list">
+
+					<ul>
+
+					</ul>
+
+				</div>
+
+			</div>
+
+
+		</div>
+
+
+	</div>
+	<a class="returnTop" href="javascript:scroll('RTop');"></a>
+	<img class="footer-img" src="img/nav&footer/bottom-img.png" style="top:297px;"></img>
+
+	<div class="footer" style="top:365px;">
+
+		<ul>
+
+			<!-- dev -->
+			<li>
+				<a href="/pages/brand">关于我们</a>
+			</li>
+			<li>
+				<a href="/pages/others/contact">联系我们</a>
+			</li>
+			<li>
+				<a href="/pages/others/feedback">问题反馈</a>
+			</li>
+			<li>
+				<a href="/pages/others/copyright">版权声明</a>
+			</li>
+			<li>
+				<a href="/pages/service/dealerCheck">授权查询</a>
+			</li>
+			<!-- pro -->
+			<!--
+			<li>
+				<a href="../index.html#/pages/brand">关于我们</a>
+			</li>
+			<li>
+				<a href="../index.html#/pages/others/contact">联系我们</a>
+			</li>
+			<li>
+				<a href="../index.html#/pages/others/feedback">问题反馈</a>
+			</li>
+			<li>
+				<a href="../index.html#/pages/others/copyright">版权声明</a>
+			</li>
+			<li>
+				<a href="../index.html#/pages/service/dealerCheck">授权查询</a>
+			</li>
+			-->
+
+		</ul>
+
+		<div class="cut-off"></div>
+		<img class="bottom-logo" src="img/index/bottom-LOGO.png" />
+		<div class="us">
+
+			<img src="img/index/weChatQR.png" style="left: 0px;" />
+			<img src="img/index/weiboQR.png" style="right: 0px;cursor: pointer;" onclick="window.open('http://weibo.com/p/1006062656308101/home?from=page_100606&mod=TAB#place','_blank')"
+			/>
+			<img src="img/index/wechat-logo.png" style="cursor: pointer;top: 94px;left: 32.5px;" />
+			<img src="img/index/weibo-logo.png" onclick="window.open('http://weibo.com/p/1006062656308101/home?from=page_100606&mod=TAB#place','_blank')"
+			 style="cursor: pointer;top: 94px;right: 32.5px;" />
+			<p>关注我们</p>
+
+		</div>
+		<div class="info">
+
+			<div class="wj">
+				<script id="ebsgovicon" src="http://szcert.ebs.org.cn/govicon.js?id=dfbdae64-a488-4984-aca1-22abe3dfdb79&width=26&height=36&type=1"
+				 type="text/javascript" charset="utf-8"></script>
+			</div>
+
+			<p>　 2010-2017&nbsp;深圳市博悦生活用品有限公司版权所有，并保留所有权利。
+				<br/>ICP备案证书号：粤ICP备14010229-1　公安机关备案号：44030502000626</p>
+
+		</div>
+	</div>
+	<div style="display: none;">
+		<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cspan id='cnzz_stat_icon_1260820114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260820114%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+	</div>
+</body>
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/st.js"></script>
+<script src="js/find.js"></script>
+<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+<script type="text/javascript">
+	function scroll(id) {
+		$("#" + id).HoverTreeScroll(1000);
+	}
+
+	var _animeId = location.href.substring(location.href.indexOf("?v_id=") + 6, location.href.indexOf("&episode="));
+	var _videoId = parseInt(location.href.substring(location.href.indexOf("&episode=") + 9, location.href.length));
+
+	$.ajax({
+		type: "post",
+		url: "http://www.alilo.com.cn/gw/resource/allAnime",
+		data: {
+			animeId: _animeId
+		},
+		success: function (data) {
+
+			var _data = JSON.parse(data);
+			var _list = _data.content.animeList;
+			var _list_length = _data.content.animeList.length;
+			var _info = _data.content.animeInfo;
+
+			$("#video-title").text(_info.name);
+			$("#video-episode-count").text("更新至" + _list_length + "集");
+			$(".video-name").text(_info.name + " : " + _list[_videoId].title)
+
+			//alert(JSON.stringify(_list));
+
+			if (_list_length > 100) {
+
+				$("#video-episode-count-select").css("display", "block");
+
+			}
+
+			for (var i = 0; i < _list_length; i++) {
+
+				var html_str = "<li data-video-id = " + i + "><p class='video-list-num'>" + (i + 1) + "</p><p class='video-list-title'>" + _list[i].title + "</p><p class='video-list-play-count'>" + (_list[i].viewCount / 10000).toFixed(1) + "万次播放</p></li>"
+				$(".video-list-list>ul").append(html_str);
+
+			}
+			$(".video-list-list>ul>li").eq(_videoId).addClass("list-li-selected");
+
+			/**
+			 * *
+			 * 播放列表滚动功能
+			 * scrollY:总共的滚动距离
+			 * scrollDis:滚动间隔
+			 * 
+			 * */
+			var numOfLi = $(".video-list-list>ul>li").length;
+			var scrollDis = 55;
+			var scrollY = -(scrollDis * (_videoId < 10 ? 0 : numOfLi - _videoId < 10 ? numOfLi - 10 : _videoId));
+
+			console.log("scrollY : " + scrollY);
+
+			$(".video-list-list>ul").css("top", scrollY + "px");
+
+			$(".video-list-list>ul").on("mousewheel DOMMouseScroll", function (e) {
+
+				var e = e || window.event;
+
+				if (numOfLi > 10) {
+
+					var numOfoverflow = numOfLi - 10;
+
+					e.preventDefault();
+					var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) || (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1));
+					if (delta > 0) { //up
+						if (scrollY == 0) return;
+						scrollY += scrollDis;
+						$(".video-list-list>ul").css("top", scrollY + "px");
+
+					} else { //down
+						if (scrollY == -(scrollDis * numOfoverflow)) return;
+						scrollY -= scrollDis;
+						$(".video-list-list>ul").css("top", scrollY + "px");
+
+					}
+
+				}
+
+			});
+
+			$(".video-list-list>ul>li").on("click", function () {
+
+				var _episode_str = $(this).attr("data-video-id");
+				location.href = "video.html?v_id=" + _animeId + "&episode=" + _episode_str;
+
+			});
+
+			player = new YKU.Player('videoPlayer', {
+				styleid: '1',
+				client_id: '0edbfd2e4fc91b72',
+				vid: _list[_videoId].videoId,
+				autoplay: true,
+				show_related: false,
+				events: {
+					onPlayEnd: function () {
+
+						if (_videoId < _list_length) {
+
+							var next_video_id = _videoId + 1;
+
+							location.href = "video.html?v_id=" + _animeId + "&episode=" + next_video_id;
+
+						}
+
+					},
+					onPlayStart: function () {
+					},
+					onPlayerReady: function () {
+
+					}
+				}
+			});
+
+
+		}
+	});
+
+	$.ajax({
+		type: "post",
+		url: "http://www.alilo.com.cn/gw/resource/animeInfo",
+		data: {
+			genre: {},
+			episodeCount: 1
+		},
+		success: function (data) {
+
+			var _data = JSON.parse(data);
+			var _list = _data.content.animeInfoList;
+			var _list_length = _data.content.animeInfoList.length
+
+			$("#video-recommend-self-img-1").attr({
+
+				"src": _list[_list_length - 1].thumbnail,
+				"data-video-id": _list[_list_length - 1].id
+
+			});
+			$("#video-recommend-self-img-2").attr({
+
+				"src": _list[_list_length - 2].thumbnail,
+				"data-video-id": _list[_list_length - 2].id
+
+			});
+
+			var setArr = [];
+			var _i = 0;
+
+			do {
+
+				var bool = false;
+				var ran = Math.round(Math.random() * (_list_length - 3));
+
+				if (setArr.length > 0) {
+					for (var j in setArr) {
+						if (setArr[j] == ran) {
+							bool = true;
+							break;
+						}
+					}
+					if (!bool) {
+						setArr[_i] = ran;
+						_i++;
+					}
+				} else {
+					setArr[_i] = ran;
+					_i++;
+				}
+
+
+			} while (setArr.length < 3)
+
+			$("#video-recommend-other-img-1").attr({
+
+				"src": _list[setArr[0]].thumbnail,
+				"data-video-id": _list[setArr[0]].id
+
+			});
+			$("#video-recommend-other-img-2").attr({
+
+				"src": _list[setArr[1]].thumbnail,
+				"data-video-id": _list[setArr[1]].id
+
+			});
+			$("#video-recommend-other-img-3").attr({
+
+				"src": _list[setArr[2]].thumbnail,
+				"data-video-id": _list[setArr[2]].id
+
+			});
+
+
+			$(".video-recommend-self>div>img").on("click", function () {
+
+				location.href = "video.html?v_id=" + parseInt($(this).attr("data-video-id")) + "&episode=0"
+
+			});
+
+			$(".video-recommend-other>div>img").on("click", function () {
+
+				location.href = "video.html?v_id=" + parseInt($(this).attr("data-video-id")) + "&episode=0"
+
+			});
+
+		}
+	});
+</script>

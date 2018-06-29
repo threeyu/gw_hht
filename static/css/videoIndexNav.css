@@ -1,0 +1,16 @@
+.video-index-nav{
+	
+	position: relative;
+	width: 100%;
+	min-width: 1226px;
+	height: 101px;
+	background: #FFFFFF;
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+	-webkit-transform: translate3d(0, -2px, 0);
+	transform: translate3d(0, -2px, 0);
+	-ms-transform: translate3d(0, -2px, 0);
+	-moz-transform: translate3d(0, -2px, 0);
+	z-index: 88;
+	
+}
