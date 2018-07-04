@@ -5,10 +5,11 @@ import Vuerify from 'vuerify'
 import routes from './router/routes'
 import App from './App.vue'
 import store from './store'
+import 'babel-polyfill'
 
 Vue.use(VueAMap)
 VueAMap.initAMapApiLoader({
-  key: 'ab582f0d8a4c67d6f54b5db1149cbd4d',
+  key: 'b86d24b211e4d2513f280f8eb458c61f',
   plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
   // 默认高德 sdk 版本为 1.4.4
   v: '1.4.4'

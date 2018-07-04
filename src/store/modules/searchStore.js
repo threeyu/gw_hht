@@ -6,7 +6,8 @@ const state = {
   resultAll: {
     singleList: [],
     albumList: [],
-    videoList: []
+    videoList: [],
+    productList: []
   }
 }
 
@@ -28,15 +29,29 @@ const actions = {
     }
     searchApi.getAllByName(param).then((res) => {
       let _data = res.content;
-      let _sList = _initList(0, _data.musicList);
-      let _aList = _initList(1, _data.specialList);
-      let _vList = _initList(2, _data.animeInfoList);
+
+      let _sList = _initResList(0, _data.musicList);
+      let _aList = _initResList(0, _data.specialList);
+      let _vList = _initResList(1, _data.animeInfoList);
       let _result;
+
+      let _pList = [];
+      let _pArr = _data.productList;
+      for (let i = 0; i < _pArr.length; ++i) {
+        _pList.push({
+          id: _pArr[i].id,
+          name: _pArr[i].model,
+          uri: _pArr[i].picture_small,
+          title: _pArr[i].name,
+          detail: _pArr[i].introduce
+        });
+      }
 
       _result = {
         singleList: _sList,
         albumList: _aList,
-        videoList: _vList
+        videoList: _vList,
+        productList: _pList
       }
 
       commit(TYPE.SEARCH_ALL_SUCCESS, _result);
@@ -60,9 +75,9 @@ const mutations = {
   }
 }
 
-let _initList = (type, arr, result = []) => {
+let _initResList = (type, arr, result = []) => {
   for (let i in arr) {
-    if (type === 2) {
+    if (type === 1) {// 1为存在coverpath；其他为不存在
       break;
     }
     if (arr[i].coverpath === undefined) {

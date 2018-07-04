@@ -3,26 +3,28 @@
   <div class="container" style="padding-top:1px;position:relative;">
 
     <div class="bg-white" :class="classes">
-      <a class="nav-opt" href="#about">
-        <p>关于我们</p>
-        <p>About us</p>
-      </a>
-      <a class="nav-opt" href="#growth">
-        <p>发展历程</p>
-        <p>Growth history</p>
-      </a>
-      <a class="nav-opt" href="#product">
-        <p>产品品质</p>
-        <p>Product quality</p>
-      </a>
-      <a class="nav-opt" href="#honor">
-        <p>企业荣誉</p>
-        <p>Our honor</p>
-      </a>
-      <a class="nav-opt" href="#content">
-        <p>内容体系</p>
-        <p>Content system</p>
-      </a>
+      <div class="nav-bar-warp">
+        <a class="nav-opt clear" href="#about">
+          <p>关于我们</p>
+          <p>About us</p>
+        </a>
+        <a class="nav-opt" href="#growth">
+          <p>发展历程</p>
+          <p>Growth history</p>
+        </a>
+        <a class="nav-opt" href="#product">
+          <p>产品品质</p>
+          <p>Product quality</p>
+        </a>
+        <a class="nav-opt" href="#honor">
+          <p>企业荣誉</p>
+          <p>Our honor</p>
+        </a>
+        <a class="nav-opt" href="#content">
+          <p>内容体系</p>
+          <p>Content system</p>
+        </a>
+      </div>
     </div>
 
     <div class="brand-img">
@@ -99,18 +101,26 @@ export default {
 .nav-bar {
   position: absolute;
   top: 60px;
-  height: 100px;
+  left: 10px;
+  right: 10px;
 }
 .nav-bar-fiexed {
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+}
+.nav-bar-warp {
+  width: 1200px;
   height: 100px;
+  margin: 0 auto;
 }
 .nav-opt {
   float: left;
   width: 240px;
   text-align: center;
   margin-top: 25px;
+  display: block;
 }
 .nav-opt > p:first-child {
   margin: 0 0 8px 0;

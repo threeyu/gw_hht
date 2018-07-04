@@ -27,6 +27,10 @@ export default {
 </script>
  
 <style>
+body {
+  margin: 0;
+  font-family: "SimHei";
+}
 .page {
   height: 100%;
 }

@@ -63,6 +63,22 @@
           </div>
         </div>
 
+        <div class="result-list" v-if="resultAll.productList.length > 0">
+          <div class="title">产品列表</div>
+
+          <div class="row">
+            <div class="product-list" :class="{'clearFix': index % 4 === 0}" v-for="(item, index) in loopPage4" :key="index">
+              <img :src="resultAll.productList[index + ptrList4[pageList4.curPage - 1]].uri" class="banner" alt="" @click="onDetail(resultAll.productList[index + ptrList4[pageList4.curPage - 1]].name)">
+              <p class="title">{{resultAll.productList[index + ptrList4[pageList4.curPage - 1]].title}}</p>
+              <p class="detail">{{resultAll.productList[index + ptrList4[pageList4.curPage - 1]].detail}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <pagination style="text-align:center;" v-model="pageList4" :curPage=pageList4.curPage :pageItem=pageList4.pageItem :totalPage=pageList4.totalPage></pagination>
+          </div>
+        </div>
+
         <div class="result-list" v-if="isEmpty">
           <div class="title">未查询到相应资源</div>
         </div>
@@ -115,6 +131,15 @@ export default {
       perPage3: 5,
       extra3: 0,
       ptrList3: [],
+      // 分页
+      pageList4: {
+        curPage: 1,
+        pageItem: 8,
+        totalPage: 13
+      },
+      perPage4: 4,
+      extra4: 0,
+      ptrList4: [],
 
 
       preAlbumId: 1028,
@@ -184,8 +209,25 @@ export default {
       }
       return this.pageList3.curPage != this.pageList3.totalPage ? this.perPage3 : tmp;
     },
+    loopPage4() {
+      // 分页
+      this.ptrList4 = [];
+      let pLen = this.resultAll.productList.length;
+      let len = Math.ceil(pLen / this.perPage4);
+      for (let i = 0; i < len; ++i) {
+        this.ptrList4.push(i * this.perPage4);
+      }
+      this.extra4 = pLen % this.perPage4;
+      this.pageList4.totalPage = len;
+
+      let tmp = this.extra4;
+      if (tmp === 0) {
+        tmp = this.perPage4;
+      }
+      return this.pageList4.curPage != this.pageList4.totalPage ? this.perPage4 : tmp;
+    },
     isEmpty() {
-      return this.resultAll.singleList.length === 0 && this.resultAll.albumList.length === 0 && this.resultAll.videoList.length === 0;
+      return this.resultAll.singleList.length === 0 && this.resultAll.albumList.length === 0 && this.resultAll.videoList.length === 0 && this.resultAll.productList.length === 0;
     }
   },
   created() {
@@ -199,6 +241,9 @@ export default {
   methods: {
     initResultList() {
       this.$store.dispatch('getSearchAll', this.s);
+    },
+    onDetail(name) {
+      this.$router.push({ name: 'productDetail', query: { name: name } });
     },
     onPlayAlbum(id) {
       if (this.preAlbumId === id) {
@@ -322,6 +367,64 @@ export default {
 }
 .clearFix {
   clear: both;
+}
+/************************************/
+.product-list {
+  position: relative;
+  float: left;
+  width: 292px; /* w/h = 0.768 */
+  height: 412px;
+  margin: 15px 4px;
+  text-align: center;
+  background: #fff;
+}
+.product-list p {
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.product-list > .banner {
+  cursor: pointer;
+}
+.product-list > .title {
+  top: 340px;
+  font-size: 20px;
+  color: #404040;
+}
+.product-list > .detail {
+  top: 372px;
+  font-size: 16px;
+  color: #929292;
+}
+.product-list > .wifi {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.product-list > .compared {
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  bottom: 80px;
+  right: 0;
+  cursor: pointer;
+}
+.product-list > .compared > img {
+  position: relative;
+  top: 50%;
+  right: -30%;
+  transform: translateY(-50%);
+}
+.product-list > .compared > p {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #999999;
 }
 </style>
 

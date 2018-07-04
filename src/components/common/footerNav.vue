@@ -28,7 +28,7 @@
               </p>
               <ul class="list-unstyled ">
                 <li>
-                  <a href="http://www.alilo.com.cn/down/huohuotuPC_V1.31.exe" target="_blank">资源下载</a>
+                  <a href="http://www.alilo.com.cn/down/huohuotuPC_V1.31.exe" target="_blank">资源下载软件</a>
                 </li>
                 <li>
                   <router-link :to="{name: 'networkCheck'}">全国售后网点</router-link>

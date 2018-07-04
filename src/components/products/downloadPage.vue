@@ -54,7 +54,7 @@
         </div>
         <div class="sina clear">
           <img src="../../assets/img/products/sinaqr-download.png" alt="">
-          <p>关注微信</p>
+          <p>关注微博</p>
         </div>
       </div>
 
@@ -69,7 +69,7 @@
         <div class="icon" v-for="(item, index) in resourceList" :key="index">
           <img :src="item.uri" alt="">
           <p>{{item.title}}</p>
-          <button type="button" class="btn" @click.prevent="onDownload()">下载 ></button>
+          <button type="button" class="btn" @click.prevent="onDownload()">打包下载</button>
         </div>
 
       </div>
@@ -87,7 +87,7 @@ export default {
     return {
       name: '',
       resourceList: [
-        { title: '儿歌', uri: require('../../assets/img/products/download-icon-1.png') }
+        { title: '  ', uri: require('../../assets/img/products/download-icon-1.png') }
       ]
     }
   },
@@ -193,7 +193,7 @@ ol {
   color: #575757;
 }
 .btn {
-  width: 80px;
+  width: 100px;
   height: 24px;
   line-height: 12px;
   border-radius: 6px;

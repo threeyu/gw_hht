@@ -1,9 +1,10 @@
-@font-face {font-family: "vm-backtop-font";
-  src: url('../fonts/vm-font.eot?t=1500447860026'); /* IE9*/
-  src: url('../fonts/vm-font.eot?t=1500447860026#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('../fonts/vm-font.woff?t=1500447860026') format('woff'), /* chrome, firefox */
-  url('../fonts/vm-font.ttf?t=1500447860026') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('../fonts/vm-font.svg?t=1500447860026#iconfont') format('svg'); /* iOS 4.1- */
+@font-face {
+  font-family: "vm-backtop-font";
+  src: url('../fonts/vm-font.eot'); /* IE9*/
+  src: url('../fonts/vm-font.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/vm-font.woff') format('woff'), /* chrome, firefox */
+  url('../fonts/vm-font.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../fonts/vm-font.svg?#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .back-top-box {

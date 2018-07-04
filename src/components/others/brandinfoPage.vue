@@ -37,7 +37,8 @@
 
         <div class="row">
           <div class="load-more">
-            <span @click="onLoadMore()">点击加载更多..</span>
+            <!-- <span @click="onLoadMore()">点击加载更多..</span> -->
+            <span>没有更多内容了</span>
           </div>
         </div>
 
@@ -81,9 +82,9 @@ export default {
         },
         {
           uri: require('../../assets/img/home/brand-4.png'),
-          title: '火火兔荣获金点国际设计大奖',
+          title: '开发大脑智力，培养艺术情操！',
           date: '2017-09-03',
-          txt: '火火兔音乐拍拍鼓、智能早教魔块斩获金点设计奖。火火兔从中脱颖 而出不仅仅依靠产品外观，更是在理解市场、贴合消费者需求之上...',
+          txt: '如果有款电子产品，既能寓教于乐，培养孩子学习能力，又能安全护眼，保护孩子视力，那爸爸妈妈们就更放心啦！',
           link: 'https://mp.weixin.qq.com/s/mS0f4aPqqWS_GDBuYmllAQ'
         }
       ],

@@ -1,6 +1,6 @@
 <template>
   <!-- 产品管理 -->
-  <div class="content">
+  <div class="content" ref="content">
 
     <router-link :to="{name: 'productDetail', query: { name: 'L1' }}">
       <img src="../../assets/img/products/banner.png" class="banner" alt="">
@@ -49,7 +49,7 @@
       </div>
     </div>
 
-    <div class="product-fix-bar bg-white" :style="{top: fixedH + 'px'}" v-if="comparedList.length > 0">
+    <div class="compared-bar bg-white" :class="classes" v-if="comparedList.length > 0">
       <div class="container">
         <div class="row">
           <div class="product-card" v-for="(item, index) in comparedList" :key="index">
@@ -64,7 +64,6 @@
       </div>
     </div>
 
-    <div class="empty" ref="emptyBar"></div>
 
   </div>
 </template>
@@ -80,7 +79,9 @@ export default {
   },
   data() {
     return {
-      fixedH: 694,
+      isFixed: false,
+      ticking: false,
+      minH: 100,
       comparedList: [],
       /**********************************/
       pageList: {
@@ -93,8 +94,7 @@ export default {
       ptrList: [],
       /**********************************/
       curBrandList: '',
-      curProTitle: '',
-      ticking: false
+      curProTitle: ''
     }
   },
   created() {
@@ -132,6 +132,14 @@ export default {
       'brandList',
       'proIconList'
     ]),
+    classes() {
+      return [
+        {
+          [`compared-bar-fiexed`]: this.isFixed,
+          ['compared-bar-normal']: !this.isFixed
+        }
+      ];
+    },
     loopPage() {
       this.ptrList = [];
       let pLen = this.proList.length;
@@ -224,16 +232,16 @@ export default {
       }
     },
     realFunc() {
-      let scrolled = document.documentElement.scrollTop || document.body.scrollTop;
-      let posY = null;
-      let clientH = document.documentElement.clientHeight || document.body.clientHeight;
-      let srcH = clientH - this.$refs.emptyBar.offsetHeight - 100;
 
-      if (this.$refs.emptyBar) {
-        posY = this.$refs.emptyBar.offsetTop;
-      }
-      this.fixedH = srcH + scrolled;
-      this.fixedH = this.fixedH > posY ? posY : this.fixedH;
+      // todo something
+      let _staticH = this.$refs.content.clientHeight + 100;
+      // console.log('-----------:  ' + _staticH);
+
+      let _syncH = window.innerHeight + window.pageYOffset;
+      // console.log('===========:  ' + _syncH);
+
+      this.isFixed = _staticH >= _syncH;
+
       this.ticking = false;
     }
   }
@@ -246,6 +254,7 @@ export default {
   min-height: 1200px;
   height: auto !important;
   height: 1200px;
+  padding-bottom: 180px;
 }
 .brand-nav {
   width: 100%;
@@ -376,13 +385,17 @@ export default {
   font-size: 14px;
   color: #999999;
 }
-.product-fix-bar {
-  position: absolute;
-  width: 100%;
+.compared-bar {
   height: 180px;
-  top: 1243px;
+  bottom: 0;
   left: 0;
   right: 0;
+}
+.compared-bar-fiexed {
+  position: fixed;
+}
+.compared-bar-normal {
+  position: absolute;
 }
 .product-card {
   position: relative;
@@ -438,8 +451,5 @@ export default {
 }
 .btn-pos {
   margin: 72px 0 0 40px;
-}
-.empty {
-  height: 180px;
 }
 </style>

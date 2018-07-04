@@ -22,7 +22,7 @@
           </div>
         </div>
 
-        <div class="navbarFixed" :style="{top: fixedH + 'px'}">
+        <div :class="classes">
           <div class="title">
             型号
           </div>
@@ -179,15 +179,24 @@ export default {
     return {
       reqData: '',
       btnTxt: '< 返回',
-      fixedH: 520,
 
-      ticking: false
+      isFixed: false,
+      ticking: false,
+      minH: 710
     }
   },
   computed: {
     ...mapGetters([
       'proCompList'
-    ])
+    ]),
+    classes() {
+      return [
+        {
+          [`nav-bar-fiexed`]: this.isFixed,
+          ['nav-bar']: !this.isFixed
+        }
+      ];
+    }
   },
   created() {
     this.reqData = this.$route.query.names;
@@ -210,17 +219,7 @@ export default {
       }
     },
     realFunc() {
-      let scrolled = document.documentElement.scrollTop || document.body.scrollTop;
-      let posY = null;
-      let offset;
-      if (this.$refs.emptyBar) {
-        posY = this.$refs.emptyBar.offsetTop + 210;
-
-        offset = scrolled - posY;
-        offset = offset > 0 ? offset : 0;
-      }
-
-      this.fixedH = this.$refs.emptyBar.offsetTop + offset;
+      this.isFixed = window.pageYOffset >= this.minH;
       this.ticking = false;
     }
   }
@@ -275,9 +274,15 @@ export default {
 .product-detail p {
   margin: 0;
 }
-.navbarFixed {
+.nav-bar {
   position: absolute;
   top: 520px;
+  width: 1100px;
+  background: #fff;
+}
+.nav-bar-fiexed {
+  position: fixed;
+  top: 0;
   width: 1100px;
   background: #fff;
 }

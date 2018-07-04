@@ -63,10 +63,11 @@
         </div>
 
         <div class="service-icon">
-          <router-link :to="{path: '#'}">
+          <span>
             <img src="../../assets/img/service/icon7.png" alt="">
+            <img src="../../assets/img/service/wx-qr.png" class="qr" alt="">
             <p>售后微信<br>工作日8:30-18:00</p>
-          </router-link>
+          </span>
         </div>
 
         <div class="service-icon">
@@ -155,7 +156,8 @@ export default {
   border: 1px dashed #f5edf0;
   display: block;
 }
-.service-icon > a {
+.service-icon a,
+span {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -165,12 +167,25 @@ export default {
   text-decoration: none;
   cursor: pointer;
 }
-.service-icon > a:hover {
+.service-icon a:hover {
   -webkit-transition: color 0.3s cubic-bezier(0.46, 0.01, 0.55, 1);
   transition: color 0.3s cubic-bezier(0.46, 0.01, 0.55, 1);
   color: #fe330b;
 }
-.service-icon > a > p {
+.service-icon > span > .qr {
+  position: absolute;
+  top: -55px;
+  left: 5px;
+  width: 98%;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.service-icon span:hover .qr {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.service-icon p {
   font-size: 18px;
   margin-top: 40px;
   line-height: 30px;

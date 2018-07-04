@@ -79,6 +79,11 @@
 
     <audio-player :posSty="posSty"></audio-player>
 
+    <div class="qr">
+      <img src="../../assets/img/content/wx-qr.png" alt="">
+      <p>微信扫一扫下载</p>
+    </div>
+
   </div>
 </template>
 
@@ -276,5 +281,16 @@ export default {
   color: #929292;
   margin-top: 8px;
   margin-bottom: 0;
+}
+.qr {
+  position: fixed;
+  right: 30px;
+  bottom: 200px;
+}
+.qr > p {
+  margin: 0;
+  font-size: 16px;
+  color: #575757;
+  text-align: center;
 }
 </style>

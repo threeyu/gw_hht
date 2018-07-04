@@ -57,7 +57,7 @@
     <audio-player :posSty="posSty"></audio-player>
 
     <div class="qr">
-      <img src="../../assets/img/others/wx-qr.png" alt="">
+      <img src="../../assets/img/content/wx-qr.png" alt="">
       <p>微信扫一扫下载</p>
     </div>
 

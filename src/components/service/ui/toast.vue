@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <div class="dialog-wrap">
-      <!-- <div class="dialog-cover" v-if="isShow" @click="onClose()"></div> -->
-      <div class="dialog-cover" v-if="isShow"></div>
-      <transition name="drop">
-        <div class="dialog-content" v-if="isShow">
-          <p class="dialog-close" @click="onClose()">X</p>
-          <slot>empty</slot>
-        </div>
-      </transition>
-    </div>
+  <div class="dialog-wrap">
+    <!-- <div class="dialog-cover" v-if="isShow" @click="onClose()"></div> -->
+    <div class="dialog-cover" v-if="isShow"></div>
+    <transition name="drop">
+      <div class="dialog-content" v-if="isShow">
+        <p class="dialog-close" @click="onClose()">X</p>
+        <slot>empty</slot>
+      </div>
+    </transition>
   </div>
 </template>
 

@@ -19,7 +19,7 @@
 
 <style scoped>
 .detail-info {
-  width: 32.33333333%;
+  width: 30.33333333%;
   height: 50px;
   font-size: 16px;
   padding-left: 5px;
