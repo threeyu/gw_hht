@@ -186,25 +186,25 @@ const actions = {
       for (let i = 0; i < _list.length; ++i) {
         _result.push({
           uri: _list[i].picture,
-          color: _list[i].extend2.toString().replace(reg, '<br>'),
-          name: _list[i].name.toString().replace(reg, '<br>'),
-          size: _list[i].size.toString().replace(reg, '<br>'),
-          toneQuality: _list[i].toneQuality.toString().replace(reg, '<br>'),
-          record: _list[i].record.toString().replace(reg, '<br>'),
-          singleCycle: _list[i].singleCycle.toString().replace(reg, '<br>'),
-          remoteController: _list[i].remoteController.toString().replace(reg, '<br>'),
-          screen: _list[i].screen.toString().replace(reg, '<br>'),
-          memory: _list[i].memory.toString().replace(reg, '<br>'),
-          childLock: _list[i].childLock.toString().replace(reg, '<br>'),
-          cell: _list[i].cell.toString().replace(reg, '<br>'),
-          download: _list[i].download.toString().replace(reg, '<br>'),
-          onoff: _list[i].onoff.toString().replace(reg, '<br>'),
-          specialty: _list[i].specialty.toString().replace(reg, '<br>')
+          color: _format(_list[i].extend2),
+          name:_format(_list[i].name),
+          size: _format(_list[i].size),
+          toneQuality: _format(_list[i].toneQuality),
+          record: _format(_list[i].record),
+          singleCycle: _format(_list[i].singleCycle),
+          remoteController: _format(_list[i].remoteController),
+          screen: _format(_list[i].screen),
+          memory: _format(_list[i].memory),
+          childLock: _format(_list[i].childLock),
+          cell: _format(_list[i].cell),
+          download: _format(_list[i].download),
+          onoff: _format(_list[i].onoff),
+          specialty: _format(_list[i].specialty)
         });
       }
 
       commit(TYPE.PRODUCT_COMP_SUCCESS, _result);
-      
+
     }).catch((error) => {
       commit(TYPE.PRODUCT_COMP_FAILURE);
       console.log('--- failed');
@@ -291,6 +291,18 @@ let _setProList = (arr, result = []) => {
     });
   }
   return result;
+}
+
+let _format = (data) => {
+  let reg = new RegExp('\n', 'g');
+  let str = data.toString();
+  if(str === '1') {
+    str = '支持';
+  }
+  if(str === '0') {
+    str = '不支持';
+  }
+  return str.replace(reg, '<br>');
 }
 
 export default {
