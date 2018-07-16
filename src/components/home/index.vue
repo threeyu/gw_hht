@@ -93,9 +93,6 @@
           <img src="../../assets/img/home/banner-5.png" class="banner" alt="">
           <div class="overlay" @click="onJump('brand')">
             <img src="../../assets/img/home/banner-icon.png" class="banner" alt="">
-            <div class="inline-btn">
-              <a>了解火火兔 ></a>
-            </div>
           </div>
         </div>
       </div>
@@ -424,28 +421,13 @@ export default {
   left: 0;
   cursor: pointer;
   opacity: 0;
-  background-color: rgba(255, 0, 0, 0.8);
+  /* background-color: rgba(255, 0, 0, 0.8); */
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
 .gallery-info:hover .overlay {
   opacity: 1;
   filter: alpha(opacity=100);
-}
-.gallery-info .inline-btn {
-  width: 116px;
-  margin: 20px auto 0 auto;
-  padding: 5px;
-  border: 1px solid #fff;
-  border-radius: 5px;
-  color: #fff;
-  overflow: hidden;
-  text-align: center;
-}
-.gallery-info .inline-btn > a {
-  display: inline-block;
-  text-decoration: none;
-  color: #fff;
 }
 .brand-content {
   width: 990px;

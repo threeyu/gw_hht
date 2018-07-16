@@ -282,6 +282,7 @@ let _setProList = (arr, result = []) => {
     result.push({
       name: arr[i].model,
       title: arr[i].name,
+      type: arr[i].type,
       detail: arr[i].introduce,
       uri: arr[i].picture_small,
       isShowCom: _isShowCom,

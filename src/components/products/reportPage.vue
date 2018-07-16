@@ -4,11 +4,11 @@
     <div class="row">
       <ol class="breadcrumb">
         <li>
-          <router-link :to="{name: 'productDetail', query: { name: name }}">产品详情</router-link>
+          <router-link :to="{name: 'productDetail', query: { type: type, name: name }}">产品详情</router-link>
         </li>
         <li class="active">试用报告</li>
-        <li>
-          <router-link :to="{name: 'productDownload', query: { name: name }}">专属资源下载</router-link>
+        <li v-if="isShowDownload">
+          <router-link :to="{name: 'productDownload', query: { type: type, name: name }}">专属资源下载</router-link>
         </li>
       </ol>
     </div>
@@ -59,11 +59,18 @@
 export default {
   data() {
     return {
-      name: ''
+      name: '',
+      type:''
+    }
+  },
+  computed: {
+    isShowDownload() {
+      return this.type <= 6;
     }
   },
   created() {
     this.name = this.$route.query.name;
+    this.type = this.$route.query.type;
   }
 }
 </script>

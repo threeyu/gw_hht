@@ -234,54 +234,14 @@ const actions = {
     rootState.requesting = true;
     commit(TYPE.CONTENT_INDEX_REQUEST);
 
-    contentApi.getRecommendList().then((res) => {
-      let _list = res.content.list;
-      let _result = _setIdxList(_list);
-
-      commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'recommendList', val: _result });
-
+    Promise.all([
+      _getRecommend(commit), _getOrigin(commit), _getSleepy(commit), _getBrand(commit)
+    ]).then(() => {
+      rootState.requesting = false;
     }).catch((error) => {
-      commit(TYPE.CONTENT_INDEX_FAILURE);
-      console.log('--- 1failed');
       console.log(error);
-    }).then(() => {
-      contentApi.getOriginalList().then((res) => {
-        let _list = res.content.list;
-        let _result = _setIdxList(_list);
-
-        commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'originList', val: _result });
-
-      }).catch((error) => {
-        commit(TYPE.CONTENT_INDEX_FAILURE);
-        console.log('--- 2failed');
-        console.log(error);
-      });
-    }).then(() => {
-      contentApi.getSleepyList().then((res) => {
-        let _list = res.content.list;
-        let _result = _setIdxList(_list);
-
-        commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'sleepyList', val: _result });
-
-      }).catch((error) => {
-        commit(TYPE.CONTENT_INDEX_FAILURE);
-        console.log('--- 3failed');
-        console.log(error);
-      });
-    }).then(() => {
-      contentApi.getBrandList().then((res) => {
-        let _list = res.content.list;
-        let _result = _setIdxList(_list);
-
-        commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'brandList', val: _result });
-
-      }).catch((error) => {
-        commit(TYPE.CONTENT_INDEX_FAILURE);
-        console.log('--- 4failed');
-        console.log(error);
-      });
     });
-    rootState.requesting = false;
+
 
   },
   clearConList({ commit, state, rootState }) {
@@ -346,6 +306,58 @@ let _setIdxList = (arr, result = []) => {
     });
   }
   return result;
+}
+let _getRecommend = (commit) => {
+  contentApi.getRecommendList().then((res) => {
+    let _list = res.content.list;
+    let _result = _setIdxList(_list);
+
+    commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'recommendList', val: _result });
+
+  }).catch((error) => {
+    commit(TYPE.CONTENT_INDEX_FAILURE);
+    console.log('--- 1failed');
+    console.log(error);
+  });
+}
+let _getOrigin = (commit) => {
+  contentApi.getOriginalList().then((res) => {
+    let _list = res.content.list;
+    let _result = _setIdxList(_list);
+
+    commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'originList', val: _result });
+
+  }).catch((error) => {
+    commit(TYPE.CONTENT_INDEX_FAILURE);
+    console.log('--- 2failed');
+    console.log(error);
+  });
+}
+let _getSleepy = (commit) => {
+  contentApi.getSleepyList().then((res) => {
+    let _list = res.content.list;
+    let _result = _setIdxList(_list);
+
+    commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'sleepyList', val: _result });
+
+  }).catch((error) => {
+    commit(TYPE.CONTENT_INDEX_FAILURE);
+    console.log('--- 3failed');
+    console.log(error);
+  });
+}
+let _getBrand = (commit) => {
+  contentApi.getBrandList().then((res) => {
+    let _list = res.content.list;
+    let _result = _setIdxList(_list);
+
+    commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'brandList', val: _result });
+
+  }).catch((error) => {
+    commit(TYPE.CONTENT_INDEX_FAILURE);
+    console.log('--- 4failed');
+    console.log(error);
+  });
 }
 
 export default {

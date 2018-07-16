@@ -70,11 +70,6 @@ export default {
   cursor: pointer;
   border: 1px solid #fff;
 }
-#nav-top a:hover {
-  color: #fff;
-  background: #e60012;
-  border: 1px solid #e60012;
-}
 #nav-top .left a:first-child {
   padding-left: 0;
   margin-right: 105px;
@@ -93,6 +88,11 @@ export default {
   line-height: 25px;
   text-align: center;
   padding: 0;
+}
+#nav-top .left .nav-top-opt:hover {
+  color: #fff;
+  background: #e60012;
+  border: 1px solid #e60012;
 }
 #nav-top .left .router-link-active,
 #nav-top .left .router-link-exact-active {

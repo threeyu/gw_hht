@@ -4,10 +4,10 @@
     <div class="row">
       <ol class="breadcrumb">
         <li>
-          <router-link :to="{name: 'productDetail', query: { name: name }}">产品详情</router-link>
+          <router-link :to="{name: 'productDetail', query: { type: type, name: name }}">产品详情</router-link>
         </li>
         <!-- <li>
-          <router-link :to="{name: 'productReport', query: { name: name }}">试用报告</router-link>
+          <router-link :to="{name: 'productReport', query: { type: type, name: name }}">试用报告</router-link>
         </li> -->
         <li class="active">专属资源下载</li>
       </ol>
@@ -86,29 +86,102 @@ export default {
   data() {
     return {
       name: '',
+      type:'',
       resourceList: [
         { title: '  ', uri: require('../../assets/img/products/download-icon-1.png') }
       ]
     }
   },
-  computed: {
-    ...mapGetters([
-      'proDownloadUrl'
-    ]),
-  },
   created() {
     this.name = this.$route.query.name;
-  },
-  mounted() {
-    this.$nextTick(() => {
-      let _str = this.name.toString().toUpperCase() + '.zip';
-      this.$store.dispatch('getProductResource', _str);
-    });
+    this.type = this.$route.query.type;
   },
   methods: {
     onDownload() {
-      window.open(this.proDownloadUrl, '_blank');
+      let p = this.name;
+      let _str = "https://pan.baidu.com/s/1k5k2QOf7JTVdCpA0vn7ibgs";
+      if (p === "g6s" || p === "G6S") {
+        _str = "https://pan.baidu.com/s/16BVNGBa3vSJvMMKKj2iJCw";
+      }
+      if (p === "j1" || p === "J1") {
+        _str = "https://pan.baidu.com/s/13X_8EJ7jc4HYbDTOJeAHxw";
+      }
+      if (p === "c6" || p === "C6") {
+        _str = "https://pan.baidu.com/s/12KJ0wTCnN0gtd4y_LEkuiA";
+      }
+      if (p === "f6s" || p === "F6s") {
+        _str = "https://pan.baidu.com/s/17hmaB1S23yMDFEFsVtWBVA";
+      }
+      if (p === "g6" || p === "G6") {
+        _str = "https://pan.baidu.com/s/12OLrHZIlUd18y3vihhz-aw";
+      }
+      if (p === "g6bt" || p === "G6BT") {
+        _str = "https://pan.baidu.com/s/1xDXuucBP4y-gXMNQH7VBdw";
+      }
+      if (p === "g63" || p === "G63") {
+        _str = "https://pan.baidu.com/s/1Uqq-R-_WdlA7v8D8YpT-Og";
+      }
+      if (p === "g7" || p === "G7") {
+        _str = "https://pan.baidu.com/s/1kulzXMieF4p6IJZiireUhA";
+      }
+      if (p === "f1" || p === "F1") {
+        _str = "https://pan.baidu.com/s/1otpkD15KAYGsBPUmzMoMUA";
+      }
+      if (p === "f3" || p === "F3") {
+        _str = "https://pan.baidu.com/s/1rEmjPb1lNzIEh1ddS5RjbA";
+      }
+      if (p === "f6" || p === "F6") {
+        _str = "https://pan.baidu.com/s/1B2s7xPy50U48AosqKvIxTg";
+      }
+      if (p === "f7" || p === "F7") {
+        _str = "https://pan.baidu.com/s/167buTBSEbwUK_INJ2bq5xA";
+      }
+      if (p === "tb" || p === "TB") {
+        _str = "https://pan.baidu.com/s/1tlbvUahsN_VCMin8azCAbQ";
+      }
+      if (p === "i7" || p === "I7") {
+        _str = "https://pan.baidu.com/s/1--4tR0muG-9SrJQ-YtG_7A";
+      }
+      if (p === "i6" || p === "I6") {
+        _str = "https://pan.baidu.com/s/1FIsNCfvtZCE9kicZC_c0_A";
+      }
+      if (p === "i6s" || p === "I6S") {
+        _str = "https://pan.baidu.com/s/1rLJOomUREkZ2b4xUC0jT3Q";
+      }
+      if (p === "d6" || p === "D6") {
+        _str = "https://pan.baidu.com/s/1h69Z9OoM9KHLUNBCZGG0Cw";
+      }
+      if (p === "d7" || p === "D7") {
+        _str = "https://pan.baidu.com/s/1sATvf8tW5W8kucdtboymgw";
+      }
+      if (p === "m6" || p === "M6") {
+        _str = "https://pan.baidu.com/s/15lNotEBB5FG3jF2CVMWNVA";
+      }
+      if (p === "p6" || p === "P6") {
+        _str = "https://pan.baidu.com/s/168a3UqEoLtmSsqULocHxLw";
+      }
+      if (p === "p3" || p === "P3") {
+        _str = "https://pan.baidu.com/s/1SiBGyaNmrVNtJeLpkchmgw";
+      }
+      if (p === "j6" || p === "J6") {
+        _str = "https://pan.baidu.com/s/1sG_h1MBG2JZFDxlp_Jb73w";
+      }
+      if (p === "p2" || p === "P2") {
+        _str = "https://pan.baidu.com/s/1z74RYv7CNY7-yg_ssu4-2g";
+      }
+      if (p === "p2" || p === "P2") {
+        _str = "https://pan.baidu.com/s/1WdfgbWvsb0y88n66u_dF6A";
+      }
+      if (p === "g7bt" || p === "G7BT") {
+        _str = "https://pan.baidu.com/s/1Lca4BpzgK6KVrpSZmLLNLw";
+      }
+      if (p === "f6s-tm" || p === "F6S-TM") {
+        _str = "https://pan.baidu.com/s/1k5k2QOf7JTVdCpA0vn7ibg";
+      }
+
+      window.open(_str, '_blank');
     }
+
   }
 }
 </script>

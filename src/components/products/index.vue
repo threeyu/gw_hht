@@ -33,7 +33,7 @@
       <div class="row" v-if="proList.length > 0">
         <div class="product-list" v-for="(item, index) in loopPage" :key="index">
           <img v-show="proList[index + ptrList[curPage - 1]].wifi" src="../../assets/img/products/wifi.png" class="wifi" alt="">
-          <img :src="proList[index + ptrList[curPage - 1]].uri" class="banner" alt="" @click="onDetail(proList[index + ptrList[curPage - 1]].name)">
+          <img :src="proList[index + ptrList[curPage - 1]].uri" class="banner" alt="" @click="onDetail(proList[index + ptrList[curPage - 1]])">
           <p class="title">{{proList[index + ptrList[curPage - 1]].title}}</p>
           <p class="detail">{{proList[index + ptrList[curPage - 1]].detail}}</p>
           <div v-show="proList[index + ptrList[curPage - 1]].isShowCom" class="compared" @click="onReload(index + ptrList[curPage - 1])">
@@ -58,12 +58,11 @@
             <div class="btn-close" @click="onReload(item)">X</div>
           </div>
 
-          <button type="button" class="btn btn-pos" @click="onCompared()" v-if="comparedList.length > 1">对比 ></button>
+          <button type="button" class="btn btn-pos" @click="onCompared()" v-if="comparedList.length > 0">对比 ></button>
 
         </div>
       </div>
     </div>
-
 
   </div>
 </template>
@@ -180,16 +179,22 @@ export default {
         case 1:
           this.curBrandList = this.proIconList.hht;
           this.curProTitle = '所有产品';
+          this.clearList();
+          this.pageList.curPage = 1;
           this.$store.dispatch('getProductByBrand', 1);
           break;
         case 2:
           this.curBrandList = this.proIconList.alilo;
           this.curProTitle = '所有产品';
+          this.clearList();
+          this.pageList.curPage = 1;
           this.$store.dispatch('getProductByBrand', 2);
           break;
         case 3:
           this.curBrandList = this.proIconList.xht;
           this.curProTitle = '所有产品';
+          this.clearList();
+          this.pageList.curPage = 1;
           this.$store.dispatch('getProductByBrand', 3);
           break;
         default:
@@ -205,8 +210,10 @@ export default {
       this.pageList.curPage = 1;
       this.$store.dispatch('getProductByType', id);
     },
-    onDetail(name) {
-      this.$router.push({ name: 'productDetail', query: { name: name } });
+    onDetail(obj) {
+      let name = obj.name;
+      let type = obj.type;
+      this.$router.push({ name: 'productDetail', query: { type: type, name: name } });
     },
     onReload(index) {
       if (this.proList[index].isCom) {
@@ -430,14 +437,10 @@ export default {
   height: 20px;
   top: 5px;
   right: 5px;
-  color: #c6bfbf;
-  border: 1px solid #c6bfbf;
+  color: #fff;
+  background: #e60012;
   border-radius: 50%;
   cursor: pointer;
-}
-.btn-close:hover {
-  background: #e60012;
-  color: #fff;
 }
 .btn {
   width: 120px;

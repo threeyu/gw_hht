@@ -5,10 +5,10 @@
       <ol class="breadcrumb">
         <li class="active">产品详情</li>
         <!-- <li>
-          <router-link :to="{name: 'productReport', query: { name: name }}">试用报告</router-link>
+          <router-link :to="{name: 'productReport', query: { type: type, name: name }}">试用报告</router-link>
         </li> -->
-        <li>
-          <router-link :to="{name: 'productDownload', query: { name: name }}">专属资源下载</router-link>
+        <li v-if="isShowDownload">
+          <router-link :to="{name: 'productDownload', query: { type: type, name: name }}">专属资源下载</router-link>
         </li>
       </ol>
     </div>
@@ -26,16 +26,21 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      name: ''
+      name: '',
+      type: ''
     }
   },
   computed: {
     ...mapGetters([
       'proDetailList'
     ]),
+    isShowDownload() {
+      return this.type <= 6;
+    }
   },
   created() {
     this.name = this.$route.query.name;
+    this.type = this.$route.query.type;
   },
   mounted() {
 
