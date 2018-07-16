@@ -157,9 +157,6 @@ export default {
       if (p === "m6" || p === "M6") {
         _str = "https://pan.baidu.com/s/15lNotEBB5FG3jF2CVMWNVA";
       }
-      if (p === "p6" || p === "P6") {
-        _str = "https://pan.baidu.com/s/168a3UqEoLtmSsqULocHxLw";
-      }
       if (p === "p3" || p === "P3") {
         _str = "https://pan.baidu.com/s/1SiBGyaNmrVNtJeLpkchmgw";
       }
