@@ -59,6 +59,7 @@
     <div class="qr">
       <img src="../../assets/img/content/wx-qr.png" alt="">
       <p>微信扫一扫下载</p>
+      <p>火火兔讲故事APP</p>
     </div>
 
   </div>

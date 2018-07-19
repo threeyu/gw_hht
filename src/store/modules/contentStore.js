@@ -37,10 +37,14 @@ const state = {
   audioPlayList: {},
 
   contentIndexList: {
-    recommendList: [],
-    originList: [],
-    sleepyList: [],
-    brandList: []
+    recommendList: [],// 精品推荐
+    characterList: [],// 性格养成
+    nationList: [],// 国学熏陶
+    wealthList: [],// 财商启蒙
+    emtionList: [],// 情商培养
+    originList: [],// 原创视频
+    sleepyList: [],// 哄睡专区
+    brandList: []// 品牌专区
   }
 }
 
@@ -72,7 +76,7 @@ const actions = {
 
   },
   // 内容页音频专辑播放列表
-  getAudioAlbumList({ commit, state, rootState }, data = 1028) {
+  async getAudioAlbumList({ commit, state, rootState }, data = 1028) {
     if (!is('Number', data)) {
       return;
     }
@@ -83,7 +87,8 @@ const actions = {
     let param = {
       id: data,
     }
-    contentApi.getAudioInfoById(param).then((res) => {
+    try {
+      let res = await contentApi.getAudioInfoById(param);
       let _data = res.content;
       let _info = _data.info;
       let _list = _data.musicList;
@@ -104,17 +109,18 @@ const actions = {
         detail: _info.description,
         cover: _info.coverpath
       };
+
       commit(TYPE.AUDIO_ALBUM_SUCCESS, _result);
-    }).catch((error) => {
+    } catch (error) {
       commit(TYPE.AUDIO_ALBUM_FAILURE);
       console.log('--- failed');
       console.log(error);
-    });
+    }
     rootState.requesting = false;
 
   },
   // 内容页音频单曲播放列表
-  getAudioAlbumSingle({ commit, state, rootState }, data = 13658) {
+  async getAudioAlbumSingle({ commit, state, rootState }, data = 13658) {
     if (!is('Number', data)) {
       return;
     }
@@ -125,7 +131,8 @@ const actions = {
     let param = {
       music_id: data,
     }
-    contentApi.getAudioSingleInfoById(param).then((res) => {
+    try {
+      let res = await contentApi.getAudioSingleInfoById(param);
       let _data = res.content;
       let _info = _data.music;
       let _songList = [];
@@ -144,16 +151,17 @@ const actions = {
         detail: _info.description,
         cover: _info.coverpath
       };
+
       commit(TYPE.AUDIO_ALBUM_SUCCESS, _result);
-    }).catch((error) => {
+    } catch (error) {
       commit(TYPE.AUDIO_ALBUM_FAILURE);
       console.log('--- failed');
       console.log(error);
-    });
+    }
     rootState.requesting = false;
   },
   // 内容页音频列表
-  getConAudioList({ commit, state, rootState }, data) {
+  async getConAudioList({ commit, state, rootState }, data) {
     if (!is('Object', data)) {
       return;
     }
@@ -166,7 +174,8 @@ const actions = {
       classname: _name,
       classid: data.sortId
     }
-    contentApi.getAudioByTxt(param).then((res) => {
+    try {
+      let res = await contentApi.getAudioByTxt(param);
       let _data = res.content;
       let _list = _data.specialList;
       let _result = [];
@@ -179,17 +188,18 @@ const actions = {
           song: '共' + _list[i].musicCount + '首歌'
         });
       }
+
       commit(TYPE.CONTENT_RESOURCE_SUCCESS, _result);
-    }).catch((error) => {
+    } catch (error) {
       commit(TYPE.CONTENT_RESOURCE_FAILURE);
       console.log('--- failed');
       console.log(error);
-    });
+    }
     rootState.requesting = false;
 
   },
   // 内容页视频列表
-  getConVideoList({ commit, state, rootState }, data) {
+  async getConVideoList({ commit, state, rootState }, data) {
     if (!is('Object', data)) {
       return;
     }
@@ -202,7 +212,8 @@ const actions = {
       genre: _genre,
       episodeCount: data.sortId
     }
-    contentApi.getVideoById(param).then((res) => {
+    try {
+      let res = await contentApi.getVideoById(param);
       let _data = res.content;
       let _list = _data.animeInfoList;
       let _result = [];
@@ -220,28 +231,29 @@ const actions = {
           song: '播放量 : ' + str
         });
       }
+
       commit(TYPE.CONTENT_RESOURCE_SUCCESS, _result);
-    }).catch((error) => {
+    } catch (error) {
       commit(TYPE.CONTENT_RESOURCE_FAILURE);
       console.log('--- failed');
       console.log(error);
-    });
+    }
     rootState.requesting = false;
 
   },
 
-  getConIndexList({ commit, state, rootState }) {
+  async getConIndexList({ commit, state, rootState }) {
     rootState.requesting = true;
     commit(TYPE.CONTENT_INDEX_REQUEST);
 
-    Promise.all([
-      _getRecommend(commit), _getOrigin(commit), _getSleepy(commit), _getBrand(commit)
-    ]).then(() => {
+    try {
+      let [res1, res2, res3, res4, res5, res6] = await Promise.all([
+        _getRecommend(commit), _getCharacter(commit), _getNation(commit), _getWealth(commit), _getEmotion(commit), _getSleepy(commit)
+      ]);
       rootState.requesting = false;
-    }).catch((error) => {
+    } catch (error) {
       console.log(error);
-    });
-
+    }
 
   },
   clearConList({ commit, state, rootState }) {
@@ -260,7 +272,6 @@ const mutations = {
   [TYPE.CONTENT_DATA_SUCCESS](state, response) {
     state.contentData = response;
   },
-
 
   // api
   [TYPE.CONTENT_RESOURCE_REQUEST](state) {
@@ -307,57 +318,109 @@ let _setIdxList = (arr, result = []) => {
   }
   return result;
 }
-let _getRecommend = (commit) => {
-  contentApi.getRecommendList().then((res) => {
+let _getRecommend = async (commit) => {
+  try {
+    let res = await contentApi.getRecommendList();
     let _list = res.content.list;
     let _result = _setIdxList(_list);
 
     commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'recommendList', val: _result });
-
-  }).catch((error) => {
+  } catch (error) {
     commit(TYPE.CONTENT_INDEX_FAILURE);
     console.log('--- 1failed');
     console.log(error);
-  });
+  }
 }
-let _getOrigin = (commit) => {
-  contentApi.getOriginalList().then((res) => {
+let _getOrigin = async (commit) => {
+  try {
+    let res = await contentApi.getOriginalList();
     let _list = res.content.list;
     let _result = _setIdxList(_list);
 
     commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'originList', val: _result });
-
-  }).catch((error) => {
+  } catch (error) {
     commit(TYPE.CONTENT_INDEX_FAILURE);
     console.log('--- 2failed');
     console.log(error);
-  });
+  }
 }
-let _getSleepy = (commit) => {
-  contentApi.getSleepyList().then((res) => {
+let _getSleepy = async (commit) => {
+  try {
+    let res = await contentApi.getSleepyList();
     let _list = res.content.list;
     let _result = _setIdxList(_list);
 
     commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'sleepyList', val: _result });
-
-  }).catch((error) => {
+  } catch (error) {
     commit(TYPE.CONTENT_INDEX_FAILURE);
     console.log('--- 3failed');
     console.log(error);
-  });
+  }
 }
-let _getBrand = (commit) => {
-  contentApi.getBrandList().then((res) => {
+let _getBrand = async (commit) => {
+  try {
+    let res = await contentApi.getBrandList();
     let _list = res.content.list;
     let _result = _setIdxList(_list);
 
     commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'brandList', val: _result });
-
-  }).catch((error) => {
+  } catch (error) {
     commit(TYPE.CONTENT_INDEX_FAILURE);
     console.log('--- 4failed');
     console.log(error);
-  });
+  }
+}
+let _getCharacter = async (commit) => {
+  try {
+    let res = await contentApi.getCharacterList();
+    let _list = res.content.list;
+    let _result = _setIdxList(_list);
+
+    commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'characterList', val: _result });
+  } catch (error) {
+    commit(TYPE.CONTENT_INDEX_FAILURE);
+    console.log('--- 5failed');
+    console.log(error);
+  }
+}
+let _getNation = async (commit) => {
+  try {
+    let res = await contentApi.getNationList();
+    let _list = res.content.list;
+    let _result = _setIdxList(_list);
+
+    commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'nationList', val: _result });
+  } catch (error) {
+    commit(TYPE.CONTENT_INDEX_FAILURE);
+    console.log('--- 6failed');
+    console.log(error);
+  }
+}
+let _getWealth = async (commit) => {
+  try {
+    let res = await contentApi.getWealthList();
+    let _list = res.content.list;
+    let _result = _setIdxList(_list);
+
+    commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'wealthList', val: _result });
+  } catch (error) {
+    commit(TYPE.CONTENT_INDEX_FAILURE);
+    console.log('--- 7failed');
+    console.log(error);
+  }
+}
+let _getEmotion = async (commit) => {
+  try {
+    let res = await contentApi.getEmotionList();
+    let _list = res.content.list;
+    let _result = _setIdxList(_list);
+
+    commit(TYPE.CONTENT_INDEX_SUCCESS, { key: 'emtionList', val: _result });
+  } catch (error) {
+    commit(TYPE.CONTENT_INDEX_FAILURE);
+    console.log('--- 8failed');
+    console.log(error);
+  }
 }
 
 export default {

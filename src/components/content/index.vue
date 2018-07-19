@@ -30,20 +30,65 @@
         </div>
       </div>
 
-      <!-- <div class="row album-info" v-if="contentIndexList.originList.length > 0">
+      <div class="row album-info" v-if="contentIndexList.characterList.length > 0">
         <div class="row">
-          <p class="album-title">原创视频</p>
+          <p class="album-title">性格养成</p>
         </div>
 
-        <div class="album-icon" v-for="(item, index) in contentIndexList.originList" :key="index">
-          <div class="album-img">
+        <div class="album-icon" v-for="(item, index) in contentIndexList.characterList" :key="index">
+          <div class="album-img" @click="onPlayAlbum(item.albumId)">
             <img :src="item.uri" class="banner" alt="">
             <img src="../../assets/img/content/cover_play.png" class="cover" alt="">
           </div>
           <p class="album-sub-1">{{item.title}}</p>
           <p class="album-sub-2">{{item.detail}}</p>
         </div>
-      </div> -->
+      </div>
+
+      <div class="row album-info" v-if="contentIndexList.nationList.length > 0">
+        <div class="row">
+          <p class="album-title">国学熏陶</p>
+        </div>
+
+        <div class="album-icon" v-for="(item, index) in contentIndexList.nationList" :key="index">
+          <div class="album-img" @click="onPlayAlbum(item.albumId)">
+            <img :src="item.uri" class="banner" alt="">
+            <img src="../../assets/img/content/cover_play.png" class="cover" alt="">
+          </div>
+          <p class="album-sub-1">{{item.title}}</p>
+          <p class="album-sub-2">{{item.detail}}</p>
+        </div>
+      </div>
+
+      <div class="row album-info" v-if="contentIndexList.wealthList.length > 0">
+        <div class="row">
+          <p class="album-title">财商启蒙</p>
+        </div>
+
+        <div class="album-icon" v-for="(item, index) in contentIndexList.wealthList" :key="index">
+          <div class="album-img" @click="onPlayAlbum(item.albumId)">
+            <img :src="item.uri" class="banner" alt="">
+            <img src="../../assets/img/content/cover_play.png" class="cover" alt="">
+          </div>
+          <p class="album-sub-1">{{item.title}}</p>
+          <p class="album-sub-2">{{item.detail}}</p>
+        </div>
+      </div>
+
+      <div class="row album-info" v-if="contentIndexList.emtionList.length > 0">
+        <div class="row">
+          <p class="album-title">情商启蒙</p>
+        </div>
+
+        <div class="album-icon" v-for="(item, index) in contentIndexList.emtionList" :key="index">
+          <div class="album-img" @click="onPlayAlbum(item.albumId)">
+            <img :src="item.uri" class="banner" alt="">
+            <img src="../../assets/img/content/cover_play.png" class="cover" alt="">
+          </div>
+          <p class="album-sub-1">{{item.title}}</p>
+          <p class="album-sub-2">{{item.detail}}</p>
+        </div>
+      </div>
 
       <div class="row album-info" v-if="contentIndexList.sleepyList.length > 0">
         <div class="row">
@@ -60,7 +105,7 @@
         </div>
       </div>
 
-      <div class="row album-info" v-if="contentIndexList.brandList.length > 0">
+      <!-- <div class="row album-info" v-if="contentIndexList.brandList.length > 0">
         <div class="row">
           <p class="album-title">品牌专区</p>
         </div>
@@ -73,7 +118,7 @@
           <p class="album-sub-1">{{item.title}}</p>
           <p class="album-sub-2">{{item.detail}}</p>
         </div>
-      </div>
+      </div> -->
 
     </div>
 
@@ -82,6 +127,7 @@
     <div class="qr">
       <img src="../../assets/img/content/wx-qr.png" alt="">
       <p>微信扫一扫下载</p>
+      <p>火火兔讲故事APP</p>
     </div>
 
   </div>

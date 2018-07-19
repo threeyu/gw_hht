@@ -16,7 +16,7 @@ const getters = {
 }
 
 const actions = {
-  getSearchAll({ commit, state, rootState }, data) {
+  async getSearchAll({ commit, state, rootState }, data) {
     if (!is('String', data)) {
       return;
     }
@@ -27,7 +27,8 @@ const actions = {
     let param = {
       name: data
     }
-    searchApi.getAllByName(param).then((res) => {
+    try {
+      let res = await searchApi.getAllByName(param);
       let _data = res.content;
 
       let _sList = _initResList(0, _data.musicList);
@@ -55,12 +56,11 @@ const actions = {
       }
 
       commit(TYPE.SEARCH_ALL_SUCCESS, _result);
-    }).catch((error) => {
+    } catch (error) {
       commit(TYPE.SEARCH_ALL_FAILURE);
       console.log('--- failed');
       console.log(error);
-    });
-
+    }
     rootState.requesting = false;
   }
 }

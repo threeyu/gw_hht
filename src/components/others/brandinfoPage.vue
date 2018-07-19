@@ -13,7 +13,7 @@
       <img src="../../assets/img/others/brand-banner.png" class="banner" alt="">
 
       <div class="content" style="padding: 60px 0;">
-        <div class="row" v-for="(item, index) in tarList" :key="index">
+        <div class="row" v-for="(item, index) in brandNewsList" :key="index">
           <div class="brand-content">
             <div class="brand-left">
               <img :src="item.uri" class="banner" alt="">
@@ -54,48 +54,20 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  data() {
-    return {
-      tarList: [],
-      brandList: [
-        {
-          uri: require('../../assets/img/home/brand-1.png'),
-          title: '火火兔获复星亿投资',
-          date: '2017-09-03',
-          txt: '火火兔正式获得了复星锐正资本的亿元融资，未来将实现智能玩教具 +IP+平台的儿童全产业链，向中国第一的儿童教育科技企业进军..',
-          link: 'https://mp.weixin.qq.com/s/m-l89g6axOSxhT6lxE5nVg'
-        },
-        {
-          uri: require('../../assets/img/home/brand-2.png'),
-          title: '火火兔武汉粉丝见面会',
-          date: '2017-09-03',
-          txt: '因为听到了宝宝们的呼唤，火火兔飞到了他们的身边，陪着宝宝们在 武汉一起做游戏，一起吃美味的甜品，欢乐无限。度过了快乐的一...',
-          link: 'https://mp.weixin.qq.com/s/xi33k56Otue9oDMUibt6mA'
-        },
-        {
-          uri: require('../../assets/img/home/brand-3.png'),
-          title: '火火兔荣获金点国际设计大奖',
-          date: '2017-09-03',
-          txt: '火火兔音乐拍拍鼓、智能早教魔块斩获金点设计奖。火火兔从中脱颖 而出不仅仅依靠产品外观，更是在理解市场、贴合消费者需求之上...',
-          link: 'https://mp.weixin.qq.com/s/MVCHRc_2jUE0TR65qIp1_g'
-        },
-        {
-          uri: require('../../assets/img/home/brand-4.png'),
-          title: '开发大脑智力，培养艺术情操！',
-          date: '2017-09-03',
-          txt: '如果有款电子产品，既能寓教于乐，培养孩子学习能力，又能安全护眼，保护孩子视力，那爸爸妈妈们就更放心啦！',
-          link: 'https://mp.weixin.qq.com/s/mS0f4aPqqWS_GDBuYmllAQ'
-        }
-      ],
-    }
+  computed: {
+    ...mapGetters([
+      'brandNewsList'
+    ]),
   },
   created() {
-    this.tarList = this.brandList;
+    this.$store.dispatch('getNewsList');
   },
   methods: {
     onLoadMore() {
-      this.tarList = this.tarList.concat(this.brandList);
+
     }
   }
 }
@@ -125,26 +97,34 @@ export default {
 }
 .brand-mid {
   float: left;
-  width: 588px;
+  width: 688px;
   height: 136px;
   margin: 12px 0 0 50px;
 }
-.brand-mid > a {
-  cursor: pointer;
-}
 .brand-mid > a > p {
-  font-size: 14px;
+  font-size: 16px;
   color: #929292;
+  height: 24px;
   line-height: 24px;
-  margin: 5px 0;
+  margin: 0;
 }
 .brand-mid > a > p:nth-child(1) {
   font-size: 20px;
   color: #404040;
-  margin: 10px 0 15px;
+  margin: 5px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .brand-mid > a:hover > p:nth-child(1) {
   color: #e60012;
+}
+.brand-mid > a > p:nth-child(3) {
+  height: 72px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 .brand-right {
   float: right;

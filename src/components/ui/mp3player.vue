@@ -203,10 +203,9 @@ export default {
       event.preventDefault();
       this.isPlaying ? this.pause() : this.play();
     },
-    onChangeSong(select, num = this.audioPlayList.songNum) {
-      this.$store.dispatch('changeSong', { model: select, songNum: num }).then(() => {
-        this.play();
-      });
+    async onChangeSong(select, num = this.audioPlayList.songNum) {
+      await this.$store.dispatch('changeSong', { model: select, songNum: num });
+      this.play();
     },
     stop() {
       this.pause();

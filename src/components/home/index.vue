@@ -63,8 +63,8 @@
           <p>品牌资讯</p>
         </div>
 
-        <div class="row" v-for="(item, index) in brandList" :key="index">
-          <div class="brand-content">
+        <div class="row" v-for="(item, index) in brandNewsList" :key="index">
+          <div class="brand-content" v-if="index < 4">
             <div class="brand-left">
               <img :src="item.uri" class="banner" alt="">
             </div>
@@ -154,7 +154,6 @@ export default {
   components: {
     swiper, swiperSlide
   },
-
   data() {
     return {
       proIcon: [
@@ -209,51 +208,25 @@ export default {
       ],
       newProList: [
         {
-          name: 'r1',
-          title: '火火兔智能摇铃R1',
-          detail1: '摇响宝宝的多元认知',
-          detail2: '乐感•伴眠•互动',
+          name: 'i6s-wifi',
+          title: '英语早教视频机I6S-wifi',
+          detail1: '给孩子更全面的教育',
+          detail2: '让学习更快乐',
           uri: require('../../assets/img/home/new-product-1.png')
         },
         {
-          name: 'L1',
-          title: '火火兔儿童思维训练机L1',
-          detail1: '逻辑力创造力 双系统训练',
-          detail2: '成就科学好思维',
+          name: 'F6S-TM',
+          title: '火火兔F6S·天猫精灵版',
+          detail1: '带娃新知识 早教更省事',
+          detail2: '家长和宝宝互动的贴心小雨伞',
           uri: require('../../assets/img/home/new-product-2.png')
         },
         {
-          name: 'i6s',
-          title: '火火兔蓝牙视频机I6S',
-          detail1: '宝宝可唱可学的智能机',
-          detail2: '英语•课程•卡拉OK',
+          name: 'L2',
+          title: '火火兔儿童电子学习板L2',
+          detail1: '解决数学启蒙问题',
+          detail2: '为幼升小奠定数学基础',
           uri: require('../../assets/img/home/new-product-3.png')
-        }
-      ],
-      brandList: [
-        {
-          uri: require('../../assets/img/home/brand-1.png'),
-          title: '火火兔获复星亿投资',
-          date: '2017-09-03',
-          txt: '火火兔正式获得了复星锐正资本的亿元融资，未来将实现智能玩教具 +IP+平台的儿童全产业链，向中国第一的儿童教育科技企业进军..'
-        },
-        {
-          uri: require('../../assets/img/home/brand-2.png'),
-          title: '火火兔武汉粉丝见面会',
-          date: '2017-09-03',
-          txt: '因为听到了宝宝们的呼唤，火火兔飞到了他们的身边，陪着宝宝们在 武汉一起做游戏，一起吃美味的甜品，欢乐无限。度过了快乐的一...'
-        },
-        {
-          uri: require('../../assets/img/home/brand-3.png'),
-          title: '火火兔荣获金点国际设计大奖',
-          date: '2017-09-03',
-          txt: '火火兔音乐拍拍鼓、智能早教魔块斩获金点设计奖。火火兔从中脱颖 而出不仅仅依靠产品外观，更是在理解市场、贴合消费者需求之上...'
-        },
-        {
-          uri: require('../../assets/img/home/brand-4.png'),
-          title: '开发大脑智力，培养艺术情操！',
-          date: '2017-09-03',
-          txt: '如果有款电子产品，既能寓教于乐，培养孩子学习能力，又能安全护眼，保护孩子视力，那爸爸妈妈们就更放心啦！'
         }
       ],
       productSwiper: {
@@ -276,7 +249,8 @@ export default {
   computed: {
     ...mapGetters([
       'proList',
-      'proDetailList'
+      'proDetailList',
+      'brandNewsList'
     ]),
   },
   watch: {
@@ -290,6 +264,9 @@ export default {
         this.$router.push({ name: 'productDetail' });
       }
     }
+  },
+  created() {
+    this.$store.dispatch('getNewsList');
   },
   methods: {
     reqProData(index) {
@@ -443,38 +420,47 @@ export default {
 }
 .brand-mid {
   float: left;
-  width: 480px;
+  width: 588px;
   height: 136px;
-  margin: 12px 100px 0 40px;
+  margin: 12px 0 0 50px;
 }
 .brand-mid > a > p {
   font-size: 16px;
   color: #929292;
+  height: 24px;
   line-height: 24px;
-  margin: 5px 0;
+  margin: 8px 0;
 }
 .brand-mid > a > p:nth-child(1) {
   font-size: 20px;
   color: #404040;
-  margin: 10px 0 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .brand-mid > a:hover > p:nth-child(1) {
   color: #e60012;
+}
+.brand-mid > a > p:nth-child(3) {
+  height: 48px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 .brand-right {
   float: right;
   margin-top: 12px;
 }
 .brand-right > .btn {
-  margin: 60px 0;
-  width: 134px;
-  height: 36px;
-  border-radius: 6px;
+  width: 100px;
+  margin: 20px auto 0 auto;
+  padding: 5px 0;
   border: 1px solid #575757;
-  font-size: 20px;
-  background: #fff;
+  border-radius: 6px;
   color: #575757;
-  line-height: 24px;
+  background: #fff;
+  text-align: center;
   cursor: pointer;
 }
 .brand-right > .btn:hover {

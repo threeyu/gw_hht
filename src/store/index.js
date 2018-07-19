@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-
+import homeStore from './modules/homeStore'
 import contentStore from './modules/contentStore'
 import productStore from './modules/productStore'
 import audioPlayStore from './modules/audioPlayStore'
@@ -24,6 +24,7 @@ export default new Vuex.Store({
   state,
   getters,
   modules: {
+    homeStore,
     contentStore,
     productStore,
     audioPlayStore,

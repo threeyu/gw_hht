@@ -24,7 +24,11 @@ const state = {
       { id: 7, title: '周边产品', uri: require('../../assets/img/products/hht-7.png') }
     ],
     alilo: [
-      { id: 8, title: '玩具车', uri: require('../../assets/img/products/alilo-1.png') }
+      { id: 8, title: '玩具车', uri: require('../../assets/img/products/alilo-1.png') },
+      { id: 10, title: '活力沙', uri: require('../../assets/img/products/alilo-2.png') },
+      { id: 11, title: '积木', uri: require('../../assets/img/products/alilo-3.png') },
+      { id: 12, title: '爬行垫', uri: require('../../assets/img/products/alilo-4.png') },
+      { id: 13, title: '吸吸球', uri: require('../../assets/img/products/alilo-5.png') }
     ],
     xht: [
       { id: 9, title: '磁力积木', uri: require('../../assets/img/products/xht-1.png') }
@@ -61,26 +65,26 @@ const actions = {
 
   },
   // 全部产品
-  getAllProduct({ commit, state, rootState }) {
+  async getAllProduct({ commit, state, rootState }) {
     rootState.requesting = true;
     commit(TYPE.PRODUCT_ALL_REQUEST);
 
-    productApi.getAllProduct().then((res) => {
+    try {
+      let res = await productApi.getAllProduct();
       let _data = res.content;
       let _list = _data.produts;
       let _result = _setProList(_list);
 
       commit(TYPE.PRODUCT_ALL_SUCCESS, _result);
-
-    }).catch((error) => {
+    } catch (error) {
       commit(TYPE.PRODUCT_ALL_FAILURE);
       console.log('--- failed');
       console.log(error);
-    });
+    }
     rootState.requesting = false;
   },
   // 获取某品牌的全部产品
-  getProductByBrand({ commit, state, rootState }, data) {
+  async getProductByBrand({ commit, state, rootState }, data) {
     if (!is('Number', data)) {
       return;
     }
@@ -91,22 +95,22 @@ const actions = {
     let _param = {
       series: data
     }
-    productApi.getProductByBrand(_param).then((res) => {
+    try {
+      let res = await productApi.getProductByBrand(_param);
       let _data = res.content;
       let _list = _data.produts;
       let _result = _setProList(_list);
 
       commit(TYPE.PRODUCT_ALL_SUCCESS, _result);
-
-    }).catch((error) => {
+    } catch (error) {
       commit(TYPE.PRODUCT_ALL_FAILURE);
       console.log('--- failed');
       console.log(error);
-    });
+    }
     rootState.requesting = false;
   },
   // 获取某品牌下的某系列的全部产品
-  getProductByType({ commit, state, rootState }, data) {
+  async getProductByType({ commit, state, rootState }, data) {
     if (!is('Number', data)) {
       return;
     }
@@ -117,22 +121,22 @@ const actions = {
     let _param = {
       type: data
     }
-    productApi.getProductByType(_param).then((res) => {
+    try {
+      let res = await productApi.getProductByType(_param);
       let _data = res.content;
       let _list = _data.produts;
       let _result = _setProList(_list);
 
       commit(TYPE.PRODUCT_ALL_SUCCESS, _result);
-
-    }).catch((error) => {
+    } catch (error) {
       commit(TYPE.PRODUCT_ALL_FAILURE);
       console.log('--- failed');
       console.log(error);
-    });
+    }
     rootState.requesting = false;
   },
   // 具体产品
-  getProductDetailByName({ commit, state, rootState }, data) {
+  async getProductDetailByName({ commit, state, rootState }, data) {
     if (!is('String', data)) {
       return;
     }
@@ -143,7 +147,8 @@ const actions = {
     let _param = {
       name: data
     }
-    productApi.getProductDetailByName(_param).then((res) => {
+    try {
+      let res = await productApi.getProductDetailByName(_param);
       let _data = res.content;
       let _list = _data.produtinfo;
       let _result = [];
@@ -157,16 +162,15 @@ const actions = {
       }
 
       commit(TYPE.PRODUCT_INFO_SUCCESS, _result);
-
-    }).catch((error) => {
+    } catch (error) {
       commit(TYPE.PRODUCT_INFO_FAILURE);
       console.log('--- failed');
       console.log(error);
-    });
+    }
     rootState.requesting = false;
   },
   // 产品对比
-  getProductComp({ commit, state, rootState }, data) {
+  async getProductComp({ commit, state, rootState }, data) {
     if (!is('String', data)) {
       return;
     }
@@ -177,7 +181,8 @@ const actions = {
     let _param = {
       productNames: data
     }
-    productApi.getCompListByName(_param).then((res) => {
+    try {
+      let res = await productApi.getCompListByName(_param);
       let _data = res.content;
       let _list = _data.products;
       let _result = [];
@@ -187,7 +192,7 @@ const actions = {
         _result.push({
           uri: _list[i].picture,
           color: _format(_list[i].extend2),
-          name:_format(_list[i].name),
+          name: _format(_list[i].name),
           size: _format(_list[i].size),
           toneQuality: _format(_list[i].toneQuality),
           record: _format(_list[i].record),
@@ -204,12 +209,11 @@ const actions = {
       }
 
       commit(TYPE.PRODUCT_COMP_SUCCESS, _result);
-
-    }).catch((error) => {
+    } catch (error) {
       commit(TYPE.PRODUCT_COMP_FAILURE);
       console.log('--- failed');
       console.log(error);
-    });
+    }
     rootState.requesting = false;
   },
   // 清楚产品缓存
@@ -275,7 +279,7 @@ const mutations = {
 }
 
 let _setProList = (arr, result = []) => {
-  let _notComList = [7, 8, 9];// 不能对比的产品
+  let _notComList = [7, 8, 9, 10, 11, 12, 13];// 不能对比的产品
 
   for (let i = 0; i < arr.length; ++i) {
     let _isShowCom = _notComList.indexOf(arr[i].type) > -1 ? false : true;
@@ -296,10 +300,10 @@ let _setProList = (arr, result = []) => {
 let _format = (data) => {
   let reg = new RegExp('\n', 'g');
   let str = data.toString();
-  if(str === '1') {
+  if (str === '1') {
     str = '支持';
   }
-  if(str === '0') {
+  if (str === '0') {
     str = '不支持';
   }
   return str.replace(reg, '<br>');

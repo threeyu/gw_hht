@@ -1,6 +1,6 @@
-const serverRoot = "http://service.alilo.com.cn";
-const cloudRoot = "http://cloud.alilo.com.cn";
-const resourceRoot = "http://resource.alilo.com.cn";
+const serverRoot = "https://service.alilo.com.cn";
+const cloudRoot = "https://cloud.alilo.com.cn";
+const resourceRoot = "https://resource.alilo.com.cn";
 
 // 维修查询
 export const maintainList = cloudRoot + "/customer/servicing/getQueryData";
@@ -33,5 +33,12 @@ export const recommendList = cloudRoot + "/baby/api/t32/recommendSpecial";
 export const originalList = cloudRoot + "/baby/api/t32/videoAlbumList";
 export const sleepyList = cloudRoot + "/baby/api/t32/sleepZone";
 export const brandList = cloudRoot + "/baby/api/t32/characterTraining";
+// 性格养成、国学熏陶、财商启蒙、情商培养
+export const characterList = cloudRoot + '/baby/api/wx/xgyc';
+export const nationList = cloudRoot + '/baby/api/wx/gxxt';
+export const wealthList = cloudRoot + '/baby/api/wx/csqm';
+export const emotionList = cloudRoot + '/baby/api/wx/qspy';
 // 搜索
 export const resultList = serverRoot + "/gw/search/byName";
+// 品牌咨询
+export const brandNewsList = serverRoot + '/gw/resource/recommend';

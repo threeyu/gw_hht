@@ -79,6 +79,7 @@ export const contentApi = {
       return res.data;
     })
   },
+  // 精品推荐、原创视频、哄睡专区、品牌专区
   getRecommendList() {
     return axios.get(url.recommendList).then((res) => {
       return res.data;
@@ -96,6 +97,27 @@ export const contentApi = {
   },
   getBrandList() {
     return axios.get(url.brandList).then((res) => {
+      return res.data;
+    })
+  },
+  // 性格养成、国学熏陶、财商启蒙、情商培养
+  getCharacterList() {
+    return axios.get(url.characterList).then((res) => {
+      return res.data;
+    })
+  },
+  getNationList() {
+    return axios.get(url.nationList).then((res) => {
+      return res.data;
+    })
+  },
+  getWealthList() {
+    return axios.get(url.wealthList).then((res) => {
+      return res.data;
+    })
+  },
+  getEmotionList() {
+    return axios.get(url.emotionList).then((res) => {
       return res.data;
     })
   }
@@ -144,6 +166,16 @@ export const searchApi = {
   // 搜索专辑、单曲、动画
   getAllByName(param) {
     return axios.post(url.resultList, qs.stringify(param)).then((res) => {
+      return res.data;
+    })
+  }
+}
+
+// 首页
+export const homeApi = {
+  // 获取全部品牌咨询
+  getNewsList(param) {
+    return axios.post(url.brandNewsList, qs.stringify(param)).then((res) => {
       return res.data;
     })
   }

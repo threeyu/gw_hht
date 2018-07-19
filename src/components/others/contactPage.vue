@@ -25,10 +25,10 @@
                 联系人：黄女士
               </li>
               <li>
-                QQ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：3477134151
+                QQ：3477134151
               </li>
               <li>
-                邮箱&nbsp;&nbsp;&nbsp;&nbsp;：3477134151@qq.com
+                邮箱：3477134151@qq.com
               </li>
             </ul>
           </div>
@@ -40,30 +40,72 @@
                 联系人：许女士
               </li>
               <li>
-                QQ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：2494168692
+                QQ：2494168692
               </li>
               <li>
-                邮箱&nbsp;&nbsp;&nbsp;&nbsp;：2494168692@qq.com
+                邮箱：2494168692@qq.com
               </li>
             </ul>
           </div>
+
         </div>
 
         <div class="row">
+
           <div class="grid-info">
-            <p>内容合作</p>
+            <p>硬件内容合作</p>
             <ul>
               <li>
-                内容合作/火火兔音视频授权/主播合作
+                如名师、app、课程合作、早教机构/幼儿园等
+              </li>
+              <li>
+                联系人：杨女士
+              </li>
+              <li>
+                QQ：738864316
+              </li>
+              <li>
+                邮箱：738864316@qq.com
+              </li>
+            </ul>
+          </div>
+
+          <div class="grid-info">
+            <p>软件内容合作</p>
+            <ul>
+              <li>
+                如音视频专辑、课程、主播、原创内容授权等
               </li>
               <li>
                 联系人：许先生
               </li>
               <li>
-                QQ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：1761560678
+                QQ：1761560678
               </li>
               <li>
-                邮箱&nbsp;&nbsp;&nbsp;&nbsp;：1761560678@qq.com
+                邮箱：1761560678@qq.com
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="grid-info">
+            <p>硬件定制合作</p>
+            <ul>
+              <li>
+                如产品定制、礼品定制、产品合作等
+              </li>
+              <li>
+                联系人：王女士
+              </li>
+              <li>
+                QQ：2829739759
+              </li>
+              <li>
+                邮箱：2829739759@qq.com
               </li>
             </ul>
           </div>
@@ -72,7 +114,7 @@
             <p>售后服务</p>
             <ul>
               <li>
-                电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：4000-585-959
+                电话：4000-585-959
               </li>
               <li>
                 <a href="tencent://message/?uin=1301576369">QQ客服①：1301576369</a>
@@ -90,6 +132,7 @@
           </div>
 
         </div>
+
       </div>
     </div>
 
@@ -164,7 +207,6 @@ ul {
   list-style-type: none;
   padding-left: 0;
   display: block;
-  overflow: hidden;
   white-space: nowrap;
 }
 ul > li {

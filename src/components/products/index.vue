@@ -2,7 +2,7 @@
   <!-- 产品管理 -->
   <div class="content" ref="content">
 
-    <router-link :to="{name: 'productDetail', query: { name: 'L1' }}">
+    <router-link :to="{name: 'productDetail', query: { name: 'F6S-TM' }}">
       <img src="../../assets/img/products/banner.png" class="banner" alt="">
     </router-link>
 
@@ -161,8 +161,8 @@ export default {
   },
   methods: {
     reqAll() {
-      this.$store.dispatch('setProData', { brandId: 0, proId: 999 });
-      this.$store.dispatch('getAllProduct');
+      this.$store.dispatch('setProData', { brandId: 1, proId: 999 });
+      this.$store.dispatch('getProductByBrand', 1);
     },
     onCompared() {
       let str = "";
@@ -198,6 +198,7 @@ export default {
           this.$store.dispatch('getProductByBrand', 3);
           break;
         default:
+          this.curBrandList = this.proIconList.hht;
           break;
       }
     },
