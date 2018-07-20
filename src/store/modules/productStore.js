@@ -18,9 +18,9 @@ const state = {
       { id: 1, title: '故事机', uri: require('../../assets/img/products/hht-1.png') },
       { id: 2, title: '视频机', uri: require('../../assets/img/products/hht-2.png') },
       { id: 3, title: '电子摇铃', uri: require('../../assets/img/products/hht-3.png') },
-      { id: 4, title: '点读笔', uri: require('../../assets/img/products/hht-4.png') },
-      { id: 5, title: '黑科技', uri: require('../../assets/img/products/hht-5.png') },
+      { id: 4, title: '智能穿戴', uri: require('../../assets/img/products/hht-4.png') },
       { id: 6, title: '智能教育', uri: require('../../assets/img/products/hht-6.png') },
+      { id: 5, title: '黑科技', uri: require('../../assets/img/products/hht-5.png') },
       { id: 7, title: '周边产品', uri: require('../../assets/img/products/hht-7.png') }
     ],
     alilo: [

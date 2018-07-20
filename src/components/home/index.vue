@@ -182,22 +182,22 @@ export default {
           uri: require('../../assets/img/home/product-4.png')
         },
         {
-          title_cn: '点读笔',
-          title_en: 'READING PEN',
+          title_cn: '智能穿戴',
+          title_en: 'INTELL WEARING',
           box_color: 'bg-blue',
           uri: require('../../assets/img/home/product-7.png')
         },
         {
-          title_cn: '黑科技',
-          title_en: 'GEEK TECH',
-          box_color: 'bg-orange',
-          uri: require('../../assets/img/home/product-5.png')
-        },
-        {
           title_cn: '智能教育',
           title_en: 'INTELL EDUCATION',
-          box_color: 'bg-green',
+          box_color: 'bg-orange',
           uri: require('../../assets/img/home/product-6.png')
+        },
+        {
+          title_cn: '黑科技',
+          title_en: 'GEEK TECH',
+          box_color: 'bg-green',
+          uri: require('../../assets/img/home/product-5.png')
         },
         {
           title_cn: '周边',
