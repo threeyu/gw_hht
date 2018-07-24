@@ -13,6 +13,11 @@
       <div class="right">
         <input type="text" v-model="sTxt" class="index-seach-text" placeholder="搜索" onfocus="this.placeholder=''" onblur="this.placeholder='搜索'" @keyup.13="onSearch()" />
         <div class="index-seach-btn" @click.prevent="onSearch()"><img src="../../assets/img/search.png" alt=""></div>
+
+        <div class="other">
+          <div class="bubble"></div>
+          <a href="http://www.alilo.com.cn/" target="_blank">返回旧版</a>
+        </div>
       </div>
 
     </div>
@@ -137,5 +142,35 @@ export default {
   position: absolute;
   top: 5px;
   left: 8px;
+}
+#nav-top .right .other {
+  position: absolute;
+  top: 0;
+  right: -110px;
+  color: #222;
+  width: 90px;
+  height: 30px;
+}
+#nav-top .right .other > a {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 32px;
+  line-height: 32px;
+}
+#nav-top .right .other > .bubble {
+  position: absolute;
+  width: 18px;
+  height: 16px;
+  top: 10px;
+  left: 0;
+  background: url(../../assets/img/switch.png);
+  background-repeat: no-repeat;
+}
+#nav-top .right .other:hover > a {
+  color: #e60012;
+}
+#nav-top .right .other:hover > .bubble {
+  background: url(../../assets/img/switch-hover.png);
 }
 </style>
