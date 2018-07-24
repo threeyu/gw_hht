@@ -279,17 +279,17 @@ const mutations = {
 }
 
 let _setProList = (arr, result = []) => {
-  let _notComList = [7, 8, 9, 10, 11, 12, 13];// 不能对比的产品
+  // let _notComList = [7, 8, 9, 10, 11, 12, 13];// 不能对比的产品
 
   for (let i = 0; i < arr.length; ++i) {
-    let _isShowCom = _notComList.indexOf(arr[i].type) > -1 ? false : true;
+    // let _isShowCom = _notComList.indexOf(arr[i].type) > -1 ? false : true;
     result.push({
       name: arr[i].model,
       title: arr[i].name,
       type: arr[i].type,
       detail: arr[i].introduce,
       uri: arr[i].picture_small,
-      isShowCom: _isShowCom,
+      isShowCom: false,
       isCom: false,
       wifi: false
     });

@@ -14,7 +14,7 @@
 
     <div class="content bg-white">
       <div class="row font-default" style="padding-top:20px;padding-bottom:20px; height:auto;text-align:center;color:#4e4e4e;background-color:#f6f6f6;border:1px solid #f5edf0;">
-        预留电话0769-82929490，售后服务400热线：4000-585-959，地址：东莞市沙田镇港口大道超达工业园A栋一楼。收件人：博悦售后服务部
+        预留电话：0769-82929490，售后服务400热线：4000-585-959，地址：东莞市沙田镇港口大道超达工业园A栋一楼。收件人：博悦售后服务部
       </div>
 
       <div class="row" style="text-align:center;margin: 30px auto 30px auto;">
