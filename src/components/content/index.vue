@@ -126,8 +126,10 @@
 
     <div class="qr">
       <img src="../../assets/img/content/wx-qr.png" alt="">
-      <p>微信扫一扫下载</p>
-      <p>火火兔讲故事APP</p>
+      <p>想要批量下载？</p>
+      <p>用APP来体验吧</p>
+      <p>面向0-6岁孩子</p>
+      <p>提供教育资源服务</p>
     </div>
 
   </div>
