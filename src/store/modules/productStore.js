@@ -154,7 +154,7 @@ const actions = {
       let _result = [];
 
       let localPath = '/static/';// dev
-      // let localPath = 'static/';// pro
+      // let localPath = '../';// pro
       for (let i = 0; i < _list.length; ++i) {
         _result.push({
           uri: localPath + _list[i]
