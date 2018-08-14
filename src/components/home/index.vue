@@ -42,7 +42,7 @@
             <img :src="item.uri" alt="">
             <div class="new-product-title">{{item.title}}</div>
             <div class="new-product-detail">{{item.detail1}}<br>{{item.detail2}}</div>
-            <button type="button" class="btn" @click="onDetail(item.name)">了解详情 ></button>
+            <button type="button" class="btn" @click="onDetail(item)">了解详情 ></button>
           </swiper-slide>
           <!-- <div class="swiper-button-prev" slot="button-prev"></div>
           <div class="swiper-button-next" slot="button-next"></div> -->
@@ -208,7 +208,8 @@ export default {
       ],
       newProList: [
         {
-          name: 'i6s-wifi',
+          name: 'I6S-WIFI',
+          type: 2,
           title: '英语早教视频机I6S-wifi',
           detail1: '给孩子更全面的教育',
           detail2: '让学习更快乐',
@@ -216,6 +217,7 @@ export default {
         },
         {
           name: 'F6S-TM',
+          type: 1,
           title: '火火兔F6S·天猫精灵版',
           detail1: '带娃新知识 早教更省事',
           detail2: '家长和宝宝互动的贴心小雨伞',
@@ -223,6 +225,7 @@ export default {
         },
         {
           name: 'L2',
+          type: 6,
           title: '火火兔儿童电子学习板L2',
           detail1: '解决数学启蒙问题',
           detail2: '为幼升小奠定数学基础',
@@ -279,8 +282,10 @@ export default {
         this.$store.dispatch('getProductByType', index);
       }
     },
-    onDetail(name) {
-      this.$store.dispatch('getProductDetailByName', name);
+    onDetail(obj) {
+      let name = obj.name;
+      let type = obj.type;
+      this.$router.push({ name: 'productDetail', query: { type: type, name: name } });
     },
     onJump(pageName) {
       this.$router.push({ name: pageName });
