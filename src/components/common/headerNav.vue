@@ -14,10 +14,10 @@
         <input type="text" v-model="sTxt" class="index-seach-text" placeholder="搜索" onfocus="this.placeholder=''" onblur="this.placeholder='搜索'" @keyup.13="onSearch()" />
         <div class="index-seach-btn" @click.prevent="onSearch()"><img src="../../assets/img/search.png" alt=""></div>
 
-        <div class="other">
+        <!-- <div class="other">
           <div class="bubble"></div>
           <a href="http://www.alilo.com.cn/" target="_blank">返回旧版</a>
-        </div>
+        </div> -->
       </div>
 
     </div>
@@ -143,7 +143,7 @@ export default {
   top: 5px;
   left: 8px;
 }
-#nav-top .right .other {
+/* #nav-top .right .other {
   position: absolute;
   top: 0;
   right: -110px;
@@ -172,5 +172,5 @@ export default {
 }
 #nav-top .right .other:hover > .bubble {
   background: url(../../assets/img/switch-hover.png);
-}
+} */
 </style>
