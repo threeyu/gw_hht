@@ -169,7 +169,8 @@ const actions = {
     rootState.requesting = true;
     commit(TYPE.CONTENT_RESOURCE_REQUEST);
 
-    let _name = data.tagId === 0 ? '' : state.conAudioTagList[data.tagId].txt;
+    let temp = data.tagId === 0 ? '' : state.conAudioTagList[data.tagId].txt;
+    let _name = temp === '哄睡'?'伴眠':temp;
     let param = {
       classname: _name,
       classid: data.sortId
