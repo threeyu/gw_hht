@@ -206,18 +206,18 @@ export default {
           uri: require('../../assets/img/home/product-8.png')
         }
       ],
-      newProList: [
+      newProList: [// id 与 productStore.proIconList 中的id对应
         {
-          name: 'I6S-WIFI',
-          type: 2,
-          title: '英语早教视频机I6S-wifi',
-          detail1: '给孩子更全面的教育',
-          detail2: '让学习更快乐',
-          uri: require('../../assets/img/home/new-product-1.png')
+          name: 'S5',
+          id: 4,
+          title: '火火兔AI视频电话手表S5',
+          detail1: '能看到妈妈的儿童4G电话手表',
+          detail2: '儿童电话手表 就要能视频的',
+          uri: require('../../assets/img/home/new-product-4.png')
         },
         {
           name: 'F6S-TM',
-          type: 1,
+          id: 1,
           title: '火火兔F6S·天猫精灵版',
           detail1: '带娃新知识 早教更省事',
           detail2: '家长和宝宝互动的贴心小雨伞',
@@ -225,7 +225,7 @@ export default {
         },
         {
           name: 'L2',
-          type: 6,
+          id: 6,
           title: '火火兔儿童电子学习板L2',
           detail1: '解决数学启蒙问题',
           detail2: '为幼升小奠定数学基础',
@@ -270,6 +270,7 @@ export default {
   },
   created() {
     this.$store.dispatch('getNewsList');
+
   },
   methods: {
     reqProData(index) {
@@ -284,7 +285,7 @@ export default {
     },
     onDetail(obj) {
       let name = obj.name;
-      let type = obj.type;
+      let type = obj.id;
       this.$router.push({ name: 'productDetail', query: { type: type, name: name } });
     },
     onJump(pageName) {
