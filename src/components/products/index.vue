@@ -3,7 +3,7 @@
   <div class="content" ref="content">
 
     <router-link :to="{name: 'productDetail', query: { name: 'F6S-TM' }}">
-      <img src="../../assets/img/products/banner.png" class="banner" alt="">
+      <img v-lazy="bannerList[0]" class="banner" alt="">
     </router-link>
 
     <div class="container">
@@ -33,7 +33,7 @@
       <div class="row" v-if="proList.length > 0">
         <div class="product-list" v-for="(item, index) in loopPage" :key="index">
           <img v-show="proList[index + ptrList[curPage - 1]].wifi" src="../../assets/img/products/wifi.png" class="wifi" alt="">
-          <img :src="proList[index + ptrList[curPage - 1]].uri" class="banner" alt="" @click="onDetail(proList[index + ptrList[curPage - 1]])">
+          <img v-lazy="proList[index + ptrList[curPage - 1]].uri" :key="proList[index + ptrList[curPage - 1]].uri" class="banner" alt="" @click="onDetail(proList[index + ptrList[curPage - 1]])">
           <p class="title">{{proList[index + ptrList[curPage - 1]].title}}</p>
           <p class="detail">{{proList[index + ptrList[curPage - 1]].detail}}</p>
           <div v-show="proList[index + ptrList[curPage - 1]].isShowCom" class="compared" @click="onReload(index + ptrList[curPage - 1])">
@@ -78,6 +78,9 @@ export default {
   },
   data() {
     return {
+      bannerList: [
+        require('../../assets/img/products/banner.png')
+      ],
       isFixed: false,
       ticking: false,
       minH: 100,

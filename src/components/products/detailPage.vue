@@ -14,7 +14,7 @@
     </div>
 
     <div class="content">
-      <img v-for="(item, index) in proDetailList" :key="index" :src="item.uri" alt="">
+      <img v-for="(item, index) in proDetailList" :key="index" v-lazy="item.uri" alt="">
     </div>
 
   </div>

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import VueAMap from 'vue-amap'
 import Vuerify from 'vuerify'
 import routes from './router/routes'
+import VueLazyload from 'vue-lazyload'
 import App from './App.vue'
 import store from './store'
 import 'babel-polyfill'
@@ -28,9 +29,12 @@ const router = new VueRouter({
     return { x: 0, y: 0 }
   }
 })
-// router.afterEach((to, from, next) => {
-//   window.scrollTo(0, 0);
-// })
+
+Vue.use(VueLazyload, {
+  proLoad: 1.3,
+  loading: require('@/assets/img/loading.gif'),
+  attempt: 3
+})
 
 new Vue({
   store,

@@ -2,13 +2,13 @@
   <!-- 内容管理 -->
   <div class="bg-white">
 
-    <img src="../../assets/img/content/banner.png" class="banner" alt="">
+    <img v-lazy="bannerList[0]" class="banner" alt="">
 
     <div class="container">
       <div class="row title-pos">
         <div class="service-icon" v-for="(item, index) in conAudioTagList" :key="index" v-if="index !== 0">
           <a @click="onJump(index)">
-            <img :src="item.uri" alt="">
+            <img v-lazy="item.uri" alt="">
             <p class="icon-title">{{item.txt}}</p>
           </a>
         </div>
@@ -22,7 +22,7 @@
 
         <div class="album-icon" v-for="(item, index) in contentIndexList.recommendList" :key="index">
           <div class="album-img" @click="onPlayAlbum(item.albumId)">
-            <img :src="item.uri" class="banner" alt="">
+            <img v-lazy="item.uri" class="banner" alt="">
             <img src="../../assets/img/content/cover_play.png" class="cover" alt="">
           </div>
           <p class="album-sub-1">{{item.title}}</p>
@@ -37,7 +37,7 @@
 
         <div class="album-icon" v-for="(item, index) in contentIndexList.characterList" :key="index">
           <div class="album-img" @click="onPlayAlbum(item.albumId)">
-            <img :src="item.uri" class="banner" alt="">
+            <img v-lazy="item.uri" class="banner" alt="">
             <img src="../../assets/img/content/cover_play.png" class="cover" alt="">
           </div>
           <p class="album-sub-1">{{item.title}}</p>
@@ -52,7 +52,7 @@
 
         <div class="album-icon" v-for="(item, index) in contentIndexList.nationList" :key="index">
           <div class="album-img" @click="onPlayAlbum(item.albumId)">
-            <img :src="item.uri" class="banner" alt="">
+            <img v-lazy="item.uri" class="banner" alt="">
             <img src="../../assets/img/content/cover_play.png" class="cover" alt="">
           </div>
           <p class="album-sub-1">{{item.title}}</p>
@@ -67,7 +67,7 @@
 
         <div class="album-icon" v-for="(item, index) in contentIndexList.wealthList" :key="index">
           <div class="album-img" @click="onPlayAlbum(item.albumId)">
-            <img :src="item.uri" class="banner" alt="">
+            <img v-lazy="item.uri" class="banner" alt="">
             <img src="../../assets/img/content/cover_play.png" class="cover" alt="">
           </div>
           <p class="album-sub-1">{{item.title}}</p>
@@ -82,7 +82,7 @@
 
         <div class="album-icon" v-for="(item, index) in contentIndexList.emtionList" :key="index">
           <div class="album-img" @click="onPlayAlbum(item.albumId)">
-            <img :src="item.uri" class="banner" alt="">
+            <img v-lazy="item.uri" class="banner" alt="">
             <img src="../../assets/img/content/cover_play.png" class="cover" alt="">
           </div>
           <p class="album-sub-1">{{item.title}}</p>
@@ -97,7 +97,7 @@
 
         <div class="album-icon" v-for="(item, index) in contentIndexList.sleepyList" :key="index">
           <div class="album-img" @click="onPlayAlbum(item.albumId)">
-            <img :src="item.uri" class="banner" alt="">
+            <img v-lazy="item.uri" class="banner" alt="">
             <img src="../../assets/img/content/cover_play.png" class="cover" alt="">
           </div>
           <p class="album-sub-1">{{item.title}}</p>
@@ -112,7 +112,7 @@
 
         <div class="album-icon" v-for="(item, index) in contentIndexList.brandList" :key="index">
           <div class="album-img" @click="onPlayAlbum(item.albumId)">
-            <img :src="item.uri" class="banner" alt="">
+            <img v-lazy="item.uri" class="banner" alt="">
             <img src="../../assets/img/content/cover_play.png" class="cover" alt="">
           </div>
           <p class="album-sub-1">{{item.title}}</p>
@@ -145,6 +145,9 @@ export default {
   },
   data() {
     return {
+      bannerList: [
+        require('../../assets/img/content/banner.png')
+      ],
       posSty: {
         top: '800px',
         left: '0'

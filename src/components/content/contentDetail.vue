@@ -4,7 +4,7 @@
     <div class="container" style="padding-top:50px;">
       <div class="content-top bg-white">
         <div class="title-type clear" :class="{'active':index === contentData.titleId}" v-for="(item, index) in conTitleList" :key="index" @click="onTypeChange(index)">
-          <img :src="item.uri" alt="">
+          <img v-lazy="item.uri" alt="">
           <p>{{item.txt}}内容</p>
         </div>
 
@@ -38,7 +38,7 @@
         <div class="row" v-if="conResList.length > 0">
           <div class="album-icon" :class="{'clearFix': index % 5 === 0}" v-for="(item, index) in loopPage" :key="index">
             <div class="album-img" :class="albumAutoH" @click="onPlayAlbum(conResList[index + ptrList[pageList.curPage - 1]].albumId)">
-              <img :src="conResList[index + ptrList[pageList.curPage - 1]].uri" class="banner" alt="">
+              <img v-lazy="conResList[index + ptrList[pageList.curPage - 1]].uri" :key="conResList[index + ptrList[pageList.curPage - 1]].uri" class="banner" alt="">
               <img src="../../assets/img/content/cover_play.png" class="cover" alt="">
             </div>
             <p class="album-sub-1">{{conResList[index + ptrList[pageList.curPage - 1]].title}}</p>

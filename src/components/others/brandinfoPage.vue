@@ -16,7 +16,7 @@
         <div class="row" v-for="(item, index) in brandNewsList" :key="index">
           <div class="brand-content">
             <div class="brand-left">
-              <img :src="item.uri" class="banner" alt="">
+              <img v-lazy="item.uri" class="banner" alt="">
             </div>
 
             <div class="brand-mid">

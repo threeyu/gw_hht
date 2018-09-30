@@ -28,27 +28,11 @@
     </div>
 
     <div class="brand-img">
-      <img src="../../assets/img/brand/banner.png" class="banner" alt="">
+      <img v-lazy="bannerList[0]" class="banner" alt="">
     </div>
 
-    <div class="brand-img" id="about">
-      <img src="../../assets/img/brand/bg-1.png" class="banner" alt="">
-    </div>
-
-    <div class="brand-img" id="growth">
-      <img src="../../assets/img/brand/bg-2.png" class="banner" alt="">
-    </div>
-
-    <div class="brand-img" id="product">
-      <img src="../../assets/img/brand/bg-3.png" class="banner" alt="">
-    </div>
-
-    <div class="brand-img" id="honor">
-      <img src="../../assets/img/brand/bg-4.png" class="banner" alt="">
-    </div>
-
-    <div class="brand-img" id="content">
-      <img src="../../assets/img/brand/bg-5.png" class="banner" alt="">
+    <div class="brand-img" v-for="(item, index) in bgList" :key="index">
+      <img v-lazy="item.uri" :id=item.id alt="">
     </div>
 
   </div>
@@ -60,6 +44,16 @@ import { on, off } from '../../utils/dom.js'
 export default {
   data() {
     return {
+      bannerList: [
+        require('../../assets/img/brand/banner.png')
+      ],
+      bgList: [
+        { uri: require('../../assets/img/brand/bg-1.png'), id: 'about'},
+        { uri: require('../../assets/img/brand/bg-2.png'), id: 'growth'},
+        { uri: require('../../assets/img/brand/bg-3.png'), id: 'product'},
+        { uri: require('../../assets/img/brand/bg-4.png'), id: 'honor'},
+        { uri: require('../../assets/img/brand/bg-5.png'), id: 'content'}
+      ],
       isFixed: false,
       ticking: false,
       minH: 160

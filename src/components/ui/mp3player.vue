@@ -6,7 +6,7 @@
     <div class="player-display">
       <div class="up">
         <div class="left">
-          <img :src="audioPlayList.cover" alt="">
+          <img v-lazy="audioPlayList.cover" :key="audioPlayList.cover" alt="">
           <div class="hole"></div>
         </div>
 

@@ -1,7 +1,7 @@
 <template>
   <!-- 售后管理 -->
   <div class="main">
-    <img src="../../assets/img/service/banner.png" class="banner" alt="">
+    <img v-lazy="bannerList[0]" class="banner" alt="">
 
     <div class="container">
       <div class="title">
@@ -118,6 +118,13 @@
 
 <script>
 export default {
+  data() {
+    return{
+      bannerList: [
+        require('../../assets/img/service/banner.png')
+      ]
+    }
+  },
   methods: {
     onClickQQ() {
       let QQnums = [1301576369, 2909988422, 1900680283];

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bg-white">
-      <img src="../../assets/img/home/banner-1.png" class="banner" alt="">
+      <img v-lazy="bannerList[0]" class="banner" alt="">
     </div>
 
     <div class="bg-white">
@@ -19,7 +19,7 @@
                 <p>{{item.title_cn}}</p>
                 <p>{{item.title_en}}</p>
               </div>
-              <img :src="item.uri" class="banner" alt="">
+              <img v-lazy="item.uri" class="banner" alt="">
             </div>
 
           </div>
@@ -39,7 +39,7 @@
         <!-- swiper -->
         <swiper class="new-product" :options="productSwiper">
           <swiper-slide v-for="(item, index) in newProList" :key="index">
-            <img :src="item.uri" alt="">
+            <img v-lazy="item.uri" alt="">
             <div class="new-product-title">{{item.title}}</div>
             <div class="new-product-detail">{{item.detail1}}<br>{{item.detail2}}</div>
             <button type="button" class="btn" @click="onDetail(item)">了解详情 ></button>
@@ -52,7 +52,7 @@
     </div>
 
     <div class="bg-white">
-      <img src="../../assets/img/home/banner-3.png" class="banner" alt="">
+      <img v-lazy="bannerList[2]" class="banner" alt="">
     </div>
 
     <div class="bg-white" style="padding-bottom:78px;">
@@ -66,7 +66,7 @@
         <div class="row" v-for="(item, index) in brandNewsList" :key="index">
           <div class="brand-content" v-if="index < 4">
             <div class="brand-left">
-              <img :src="item.uri" class="banner" alt="">
+              <img v-lazy="item.uri" class="banner" alt="">
             </div>
 
             <div class="brand-mid">
@@ -88,9 +88,9 @@
 
     <div class="bg-white">
       <div class="gallery">
-        <img src="../../assets/img/home/banner-4.png" class="banner" alt="">
+        <img v-lazy="bannerList[3]" class="banner" alt="">
         <div class="gallery-info">
-          <img src="../../assets/img/home/banner-5.png" class="banner" alt="">
+          <img v-lazy="bannerList[4]" class="banner" alt="">
           <div class="overlay" @click="onJump('brand')">
             <img src="../../assets/img/home/banner-icon.png" class="banner" alt="">
           </div>
@@ -156,6 +156,13 @@ export default {
   },
   data() {
     return {
+      bannerList: [
+        require('../../assets/img/home/banner-1.png'),
+        require('../../assets/img/home/banner-2.png'),
+        require('../../assets/img/home/banner-3.png'),
+        require('../../assets/img/home/banner-4.png'),
+        require('../../assets/img/home/banner-5.png')
+      ],
       proIcon: [
         {
           title_cn: '全部产品',
