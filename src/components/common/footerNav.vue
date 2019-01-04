@@ -140,7 +140,7 @@
               <img style="float:left;" src="http://szcert.ebs.org.cn/Images/govIcon.gif" width="26" height="36">
             </a>
             <a target="_blank" href="http://www.miitbeian.gov.cn/" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
-              <span style="float:left;color:#000;padding:0 0 0 20px;">2010-2017深圳市博悦生活用品有限公司版权所有，并保留所有权利 <br>ICP备案证书号：粤ICP备14010229-1　公安机关备案号：44030502000626</span>
+              <span style="float:left;color:#000;padding:0 0 0 20px;">2010-2019深圳市博悦生活用品有限公司版权所有，并保留所有权利 <br>ICP备案证书号：粤ICP备14010229-1　公安机关备案号：44030502000626</span>
             </a>
           </div>
         </div>
