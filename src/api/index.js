@@ -120,6 +120,21 @@ export const contentApi = {
     return axios.get(url.emotionList).then((res) => {
       return res.data;
     })
+  },
+  // 下载音频资源
+  getAudioResource(name) {
+    let mp3url = url.audioDownload + name;
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'get',
+        url: mp3url,
+        responseType: 'arraybuffer'
+      }).then(res => {
+        resolve(res.data);
+      }).catch(error => {
+        reject(error.toString());
+      })
+    })
   }
 }
 

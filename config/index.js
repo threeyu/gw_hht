@@ -10,7 +10,29 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api/v1': {
+        target: 'https://service.alilo.com.cn',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/v1': ''
+        }
+      },
+      '/api/v2': {
+        target: 'https://cloud.alilo.com.cn',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/v2': ''
+        }
+      },
+      '/api/v3': {
+        target: 'https://resource.alilo.com.cn',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/v3': ''
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -20,7 +42,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */

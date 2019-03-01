@@ -231,12 +231,12 @@ export default {
           uri: require('../../assets/img/home/new-product-2.png')
         },
         {
-          name: 'L2',
-          id: 6,
-          title: '火火兔儿童电子学习板L2',
-          detail1: '解决数学启蒙问题',
-          detail2: '为幼升小奠定数学基础',
-          uri: require('../../assets/img/home/new-product-3.png')
+          name: 'I9',
+          id: 2,
+          title: '火火兔英语早教机器人I9',
+          detail1: '培养孩子的英语学习兴趣',
+          detail2: '寓教于乐、孩子的学习利器',
+          uri: require('../../assets/img/home/new-product-5.png')
         }
       ],
       productSwiper: {

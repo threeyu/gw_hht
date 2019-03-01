@@ -1,4 +1,8 @@
+import { contentApi } from '../../api/index'
 import * as TYPE from '../actionType/audioPlayType'
+import { is } from '../../utils'
+import JSZip from 'jszip'
+import FileSaver from 'file-saver'
 
 const state = {
   isPlaying: false,
@@ -48,6 +52,49 @@ const actions = {
         }
         break;
     }
+  },
+  // 下载音频资源
+  async audioDownload({ commit, state, rootState }, data) {
+    if (!is('Object', data)) {
+      return;
+    }
+
+    let param = {
+      name: data.name + '.mp3',
+      url: data.url
+    }
+    try {
+      let res = await contentApi.getAudioResource(param.url);
+      let aTag = document.createElement('a');
+      let blob = new Blob([res]);
+      aTag.download = param.name;
+      aTag.href = URL.createObjectURL(blob);
+      aTag.click();
+      URL.revokeObjectURL(blob);
+
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  async audioAllDownload({ commit, state, rootState }, data) {
+    if (!is('Array', data)) {
+      return;
+    }
+
+    let zip = new JSZip();
+    let allList = [];
+    data.forEach(item => {
+      let promise = contentApi.getAudioResource(item.url).then(data => {
+        let name = item.name + '.mp3';
+        zip.file(name, data, { binary: true });
+      });
+
+      allList.push(promise);
+    });
+
+    await Promise.all(allList);
+    let content = await zip.generateAsync({ type: 'blob' });
+    FileSaver.saveAs(content, '批量下载.zip');
   }
 }
 

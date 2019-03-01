@@ -1,12 +1,19 @@
 <template>
   <div class="player" :class="[playerShow? playerShowCls : playerHideCls]" :style="posSty">
-    <audio id="music" v-if="audioPlayList.songList" :src="mp3Url" :autoplay="isAudoPlay" @timeupdate="onUpdateTime()" @ended="onEnd()" @canplay="onUpdateTime()">
-    </audio>
+    <audio
+      id="music"
+      v-if="audioPlayList.songList"
+      :src="mp3Url"
+      :autoplay="isAudoPlay"
+      @timeupdate="onUpdateTime()"
+      @ended="onEnd()"
+      @canplay="onUpdateTime()"
+    ></audio>
 
     <div class="player-display">
       <div class="up">
         <div class="left">
-          <img v-lazy="audioPlayList.cover" :key="audioPlayList.cover" alt="">
+          <img v-lazy="audioPlayList.cover" :key="audioPlayList.cover" alt>
           <div class="hole"></div>
         </div>
 
@@ -21,9 +28,19 @@
       <div class="down">
         <p class="left">{{currentTime}}</p>
         <div class="player-bar">
-          <img class="bg" src="../../assets/img/content/progress-bg.png" alt="">
-          <img class="point" :style="{left:indicatorPosition + '%'}" src="../../assets/img/content/progress-point.png" alt="">
-          <img class="info" :style="{width:indicatorPosition + '%'}" src="../../assets/img/content/progress-info.png" alt="">
+          <img class="bg" src="../../assets/img/content/progress-bg.png" alt>
+          <img
+            class="point"
+            :style="{left:indicatorPosition + '%'}"
+            src="../../assets/img/content/progress-point.png"
+            alt
+          >
+          <img
+            class="info"
+            :style="{width:indicatorPosition + '%'}"
+            src="../../assets/img/content/progress-info.png"
+            alt
+          >
         </div>
         <p class="right">{{leftTime}}</p>
 
@@ -31,24 +48,24 @@
       </div>
 
       <a class="player-play" @click="onPlay()">
-        <img v-if="isPlaying" src="../../assets/img/content/btn-pause.png" alt="">
-        <img v-else src="../../assets/img/content/btn-play.png" alt="">
+        <img v-if="isPlaying" src="../../assets/img/content/btn-pause.png" alt>
+        <img v-else src="../../assets/img/content/btn-play.png" alt>
       </a>
       <a class="player-pre" @click="onChangeSong('pre')">
-        <img src="../../assets/img/content/btn-pre.png" alt="">
+        <img src="../../assets/img/content/btn-pre.png" alt>
       </a>
       <a class="player-next" @click="onChangeSong('next')">
-        <img src="../../assets/img/content/btn-next.png" alt="">
+        <img src="../../assets/img/content/btn-next.png" alt>
       </a>
-
+      
       <a class="player-switch" @click="onSwitch()">
-        <img :src="btnLR.pointer" alt="">
+        <img :src="btnLR.pointer" alt>
       </a>
       <a class="player-download" href="javascript:void(0)" @click="onDownload()">
-        <img src="../../assets/img/content/btn-download.png" alt="">
+        <img src="../../assets/img/content/btn-download.png" alt>
       </a>
       <a class="player-pop" @click="onPop()">
-        <img src="../../assets/img/content/btn-list.png" alt="">
+        <img src="../../assets/img/content/btn-list.png" alt>
       </a>
     </div>
 
@@ -62,30 +79,58 @@
         <div class="underline"></div>
 
         <div class="sub">
-          <p class="title">
-            <strong>{{audioPlayList.name}}</strong>
-          </p>
-          <p class="num">共{{audioPlayList.songNum}}首</p>
+          <div class="sel">
+            <a class="sel-img" @click="onAllSelect()">
+              <img v-if="isSelect.all" src="../../assets/img/content/select-check.png" alt>
+              <img v-else src="../../assets/img/content/select-empty.png" alt>
+            </a>
+          </div>
+          <div class="title">
+            <p>
+              <strong>{{audioPlayList.name}}</strong>
+            </p>
+          </div>
+          <div class="download">
+            <a @click="onAllDownload()">
+              <img src="../../assets/img/content/batch-download.png" alt>
+            </a>
+          </div>
+          <div class="num">
+            <p>共{{audioPlayList.songNum}}首</p>
+          </div>
         </div>
 
         <div class="song">
           <div class="detailList" ref="detailList" @mousewheel="onMouseScroll()">
             <ul class="left">
-              <li v-for="(item, index) in audioPlayList.songList" :key="index" @click="onChangeSong(index)">
-                {{item.txt}}
+              <li v-for="(item, index) in audioPlayList.songList" :key="index">
+                <a class="sel-img" @click="onPieceSelect(index)">
+                  <img
+                    v-if="isSelect.list[index]"
+                    src="../../assets/img/content/select-check.png"
+                    alt
+                  >
+                  <img v-else src="../../assets/img/content/select-empty.png" alt>
+                </a>
               </li>
+            </ul>
+            <ul class="mid">
+              <li
+                v-for="(item, index) in audioPlayList.songList"
+                :key="index"
+                @click="onChangeSong(index)"
+              >{{item.txt}}</li>
             </ul>
             <ul class="right">
               <li v-for="(item, index) in audioPlayList.songList" :key="index">
-                <img src="../../assets/img/content/listen-icon.png" alt=""> {{item.playCnt}}
+                <img src="../../assets/img/content/listen-icon.png" alt>
+                {{item.playCnt}}
               </li>
             </ul>
           </div>
         </div>
-
       </div>
     </transition>
-
   </div>
 </template>
 
@@ -96,6 +141,10 @@ export default {
   data() {
     return {
       isAudoPlay: false,
+      isSelect: {
+        all: false,
+        list: []
+      },
       // UI
       playerShowCls: 'player-transform-show',
       playerHideCls: 'player-transform-hide',
@@ -138,6 +187,8 @@ export default {
     audioPlayList(val) {
       this.listLen = val.songList.length;
       this.scrollY = -(this.distance * (this.curVideoId < this.maxRow ? 0 : this.listLen - this.curVideoId < this.maxRow ? this.listLen - this.maxRow : this.curVideoId));
+      // set false
+      this.setSelect(false);
     }
   },
   computed: {
@@ -167,6 +218,39 @@ export default {
     this.stop();
   },
   methods: {
+    // true/false
+    setSelect(val) {
+      this.isSelect.all = val;
+      for(let i = 0; i < this.listLen; ++i) {
+        this.isSelect.list[i] = val;
+      }
+    },
+    onAllSelect() {
+      this.isSelect.all === true? this.setSelect(false) : this.setSelect(true);
+    },
+    onPieceSelect(idx) {
+      let result = this.isSelect.list[idx] === true? false : true;
+      this.$set(this.isSelect.list, idx, result);
+    },
+    onAllDownload() {
+      let allList = [];
+      for(let i = 0; i < this.listLen; ++i) {
+        if(this.isSelect.list[i] === true) {
+          let _name = this.audioPlayList.songList[i].txt;
+          let _url = this.audioPlayList.songList[i].uri;
+          let _arr = _url.split('/');
+          let _fileName = _arr[_arr.length - 1];
+          allList.push({ name: _name, url: _fileName });
+        }
+      }
+
+      let allLen = allList.length;
+      if(allLen === 0) {
+        return;
+      }
+
+      this.$store.dispatch('audioAllDownload', allList);
+    },
     onSwitch() {
       this.playerShow = !this.playerShow;
       this.btnLR.pointer = this.playerShow ? this.btnLR.left : this.btnLR.right;
@@ -177,8 +261,11 @@ export default {
     onDownload() {
       let _url = this.mp3Url;
       let _name = this.audioPlayList.songList[this.curSongId].txt;
+      let _arr = _url.split('/');
+      let _fileName = _arr[_arr.length - 1];
 
-      window.open(_url);
+      
+      this.$store.dispatch('audioDownload', { name: _name, url: _fileName });
     },
     onPop() {
       this.isPop = !this.isPop;
@@ -434,19 +521,36 @@ export default {
   border-bottom: 1px dashed #dddddd;
 }
 .player-list > .sub {
-  padding: 36px 0 50px 0;
+  height: 34px;
+  padding: 36px 0 10px 0;
+}
+.player-list > .sub p {
+  padding: 0;
+  margin: 0;
+}
+.player-list > .sub > .sel {
+  float: left;
+  width: 5%;
+  padding: 5px 0;
 }
 .player-list > .sub > .title {
   font-size: 18px;
   color: #404040;
-  margin-bottom: 0;
+  width: 60%;
   float: left;
+  padding: 7px 0;
+}
+.player-list > .sub > .download {
+  width: 20%;
+  float: left;
+  cursor: pointer;
 }
 .player-list > .sub > .num {
   font-size: 18px;
   color: #404040;
-  margin-bottom: 0;
+  width: 12%;
   float: right;
+  padding: 7px 0;
 }
 .player-list > .song {
   position: relative;
@@ -466,10 +570,15 @@ export default {
 }
 .player-list > .song .left {
   float: left;
+  width: 5%;
+  padding-top: 5px;
+}
+.player-list > .song .mid {
+  float: left;
   width: 80%;
   font-size: 16px;
 }
-.player-list > .song .left > li {
+.player-list > .song .mid > li {
   cursor: pointer;
 }
 .player-list > .song .right {
@@ -490,6 +599,11 @@ export default {
   line-height: 55px;
   color: #575757;
   clear: both;
+}
+.sel-img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 </style>
 

@@ -1,6 +1,6 @@
-const serverRoot = "https://service.alilo.com.cn";
-const cloudRoot = "https://cloud.alilo.com.cn";
-const resourceRoot = "https://resource.alilo.com.cn";
+const serverRoot = "/api/v1";
+const cloudRoot = "/api/v2";
+const resourceRoot = "/api/v3";
 
 // 维修查询
 export const maintainList = cloudRoot + "/customer/servicing/getQueryData";
@@ -28,6 +28,8 @@ export const productInfo = serverRoot + "/gw/product/productinfo";
 export const productCompList = serverRoot + "/gw/product/compare";
 // 产品资源下载
 export const resourceDownload = resourceRoot + "/res/gw/";
+// 音频资源下载
+export const audioDownload = resourceRoot + "/res/";
 // 精品推荐、原创视频、哄睡专区、品牌专区
 export const recommendList = cloudRoot + "/baby/api/t32/recommendSpecial";
 export const originalList = cloudRoot + "/baby/api/t32/videoAlbumList";
