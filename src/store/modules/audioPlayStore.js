@@ -59,15 +59,11 @@ const actions = {
       return;
     }
 
-    let param = {
-      name: data.name + '.mp3',
-      url: data.url
-    }
     try {
-      let res = await contentApi.getAudioResource(param.url);
+      let res = await contentApi.getAudioResource(data);
       let aTag = document.createElement('a');
       let blob = new Blob([res]);
-      aTag.download = param.name;
+      aTag.download = data.songName + '.mp3';
       aTag.href = URL.createObjectURL(blob);
       aTag.click();
       URL.revokeObjectURL(blob);
@@ -84,8 +80,8 @@ const actions = {
     let zip = new JSZip();
     let allList = [];
     data.forEach(item => {
-      let promise = contentApi.getAudioResource(item.url).then(data => {
-        let name = item.name + '.mp3';
+      let promise = contentApi.getAudioResource(item).then(data => {
+        let name = item.songName + '.mp3';
         zip.file(name, data, { binary: true });
       });
 

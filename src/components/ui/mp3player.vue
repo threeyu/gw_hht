@@ -102,7 +102,7 @@
 
         <div class="song">
           <div class="detailList" ref="detailList" @mousewheel="onMouseScroll()">
-            <ul class="left">
+            <ul class="left" v-show="isSelect.all">
               <li v-for="(item, index) in audioPlayList.songList" :key="index">
                 <a class="sel-img" @click="onPieceSelect(index)">
                   <img
@@ -140,6 +140,7 @@ export default {
   props: ['posSty'],
   data() {
     return {
+      testProgress: 0,
       isAudoPlay: false,
       isSelect: {
         all: false,
@@ -231,6 +232,16 @@ export default {
     onPieceSelect(idx) {
       let result = this.isSelect.list[idx] === true? false : true;
       this.$set(this.isSelect.list, idx, result);
+
+      let cnt = 0;
+      for(let i = 0; i < this.listLen; ++i) {
+        if(this.isSelect.list[i] === false) {
+          cnt++;
+        }
+      }
+      if(cnt === this.listLen) {
+        this.isSelect.all = false;
+      }
     },
     onAllDownload() {
       let allList = [];
@@ -240,9 +251,10 @@ export default {
           let _url = this.audioPlayList.songList[i].uri;
           let _arr = _url.split('/');
           let _fileName = _arr[_arr.length - 1];
-          allList.push({ name: _name, url: _fileName });
+          allList.push({ songName: _name, encodeName: _fileName, onProgressCallback: this.progressCallback });
         }
       }
+      
 
       let allLen = allList.length;
       if(allLen === 0) {
@@ -250,6 +262,11 @@ export default {
       }
 
       this.$store.dispatch('audioAllDownload', allList);
+    },
+    progressCallback(e) {
+      let percentCompleted = Math.round((e.loaded * 100) / e.total);
+      // console.log(percentCompleted);
+      percentCompleted === 100? this.testProgress+=1: this.testProgress+=0;
     },
     onSwitch() {
       this.playerShow = !this.playerShow;
@@ -265,7 +282,8 @@ export default {
       let _fileName = _arr[_arr.length - 1];
 
       
-      this.$store.dispatch('audioDownload', { name: _name, url: _fileName });
+      // this.$store.dispatch('audioDownload', { songName: _name, encodeName: _fileName });
+      window.open(_url);
     },
     onPop() {
       this.isPop = !this.isPop;

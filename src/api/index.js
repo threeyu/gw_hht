@@ -122,18 +122,14 @@ export const contentApi = {
     })
   },
   // 下载音频资源
-  getAudioResource(name) {
-    let mp3url = url.audioDownload + name;
-    return new Promise((resolve, reject) => {
-      axios({
-        method: 'get',
-        url: mp3url,
-        responseType: 'arraybuffer'
-      }).then(res => {
-        resolve(res.data);
-      }).catch(error => {
-        reject(error.toString());
-      })
+  getAudioResource(obj) {
+    let downloadUrl = url.audioDownload + obj.encodeName;
+    let config = {
+      responseType: 'arraybuffer',
+      onDownloadProgress: obj.onProgressCallback
+    };
+    return axios.get(downloadUrl, config).then((res) => {
+      return res.data;
     })
   }
 }
