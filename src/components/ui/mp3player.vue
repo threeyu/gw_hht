@@ -92,7 +92,13 @@
           </div>
           <div class="download">
             <a @click="onAllDownload()">
-              <img src="../../assets/img/content/batch-download.png" alt>
+              <div v-if="downloadDetail.inProgress !== true">
+                <img class="download-png" src="../../assets/img/content/batch-download.png" alt>
+              </div>
+              <div class="download-group" v-else>
+                <div class="download-group-txt">{{downloadDetail.current}}%</div>
+                <img class="download-png" src="../../assets/img/content/downloading.png" alt>
+              </div>
             </a>
           </div>
           <div class="num">
@@ -102,7 +108,7 @@
 
         <div class="song">
           <div class="detailList" ref="detailList" @mousewheel="onMouseScroll()">
-            <ul class="left" v-show="isSelect.all">
+            <ul class="left">
               <li v-for="(item, index) in audioPlayList.songList" :key="index">
                 <a class="sel-img" @click="onPieceSelect(index)">
                   <img
@@ -140,7 +146,11 @@ export default {
   props: ['posSty'],
   data() {
     return {
-      testProgress: 0,
+      downloadDetail: {
+        inProgress: false,
+        cnt: 0,
+        current: 0,
+      },
       isAudoPlay: false,
       isSelect: {
         all: false,
@@ -149,8 +159,8 @@ export default {
       // UI
       playerShowCls: 'player-transform-show',
       playerHideCls: 'player-transform-hide',
-      isPop: false,
-      playerShow: false,
+      isPop: true,
+      playerShow: true,
       btnLR: {
         pointer: require('../../assets/img/content/arrow-right.png'),
         left: require('../../assets/img/content/arrow-left.png'),
@@ -244,6 +254,10 @@ export default {
       }
     },
     onAllDownload() {
+      if(this.downloadDetail.inProgress) {
+        return;
+      }
+
       let allList = [];
       for(let i = 0; i < this.listLen; ++i) {
         if(this.isSelect.list[i] === true) {
@@ -255,18 +269,31 @@ export default {
         }
       }
       
-
       let allLen = allList.length;
       if(allLen === 0) {
         return;
       }
 
+      this.startDownload();
       this.$store.dispatch('audioAllDownload', allList);
+    },
+    startDownload() {
+      this.downloadDetail.current = 0;
+
+      this.downloadDetail.inProgress = true;
     },
     progressCallback(e) {
       let percentCompleted = Math.round((e.loaded * 100) / e.total);
-      // console.log(percentCompleted);
-      percentCompleted === 100? this.testProgress+=1: this.testProgress+=0;
+      percentCompleted === 100? this.downloadDetail.cnt+=1: this.downloadDetail.cnt+=0;
+
+      this.downloadDetail.current = (this.downloadDetail.cnt / this.listLen * 100).toFixed();
+
+      if(this.downloadDetail.cnt === this.listLen) {
+        this.downloadDetail.cnt = 0;
+        this.downloadDetail.current = 0;
+        this.downloadDetail.inProgress = false;
+        console.log('--- over ---');
+      }
     },
     onSwitch() {
       this.playerShow = !this.playerShow;
@@ -281,7 +308,6 @@ export default {
       let _arr = _url.split('/');
       let _fileName = _arr[_arr.length - 1];
 
-      
       // this.$store.dispatch('audioDownload', { songName: _name, encodeName: _fileName });
       window.open(_url);
     },
@@ -562,6 +588,23 @@ export default {
   width: 20%;
   float: left;
   cursor: pointer;
+}
+.player-list > .sub > .download > a {
+  display: block;
+}
+.download-group {
+  position: relative;
+  display: inline-block;
+}
+.download-group-txt {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+.download-png {
+  width: 114px;
+  height: 34px;
 }
 .player-list > .sub > .num {
   font-size: 18px;
