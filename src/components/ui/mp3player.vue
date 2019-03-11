@@ -92,10 +92,10 @@
           </div>
           <div class="download">
             <a @click="onAllDownload()">
-              <div v-if="downloadDetail.inProgress !== true">
+              <div v-show="downloadDetail.inProgress !== true">
                 <img class="download-png" src="../../assets/img/content/batch-download.png" alt>
               </div>
-              <div class="download-group" v-else>
+              <div class="download-group" v-show="downloadDetail.inProgress === true">
                 <div class="download-group-txt">{{downloadDetail.current}}%</div>
                 <img class="download-png" src="../../assets/img/content/downloading.png" alt>
               </div>
@@ -159,8 +159,8 @@ export default {
       // UI
       playerShowCls: 'player-transform-show',
       playerHideCls: 'player-transform-hide',
-      isPop: true,
-      playerShow: true,
+      isPop: false,
+      playerShow: false,
       btnLR: {
         pointer: require('../../assets/img/content/arrow-right.png'),
         left: require('../../assets/img/content/arrow-left.png'),
