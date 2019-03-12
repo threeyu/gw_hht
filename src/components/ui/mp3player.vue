@@ -95,9 +95,8 @@
               <div v-show="downloadDetail.inProgress !== true">
                 <img class="download-png" src="../../assets/img/content/batch-download.png" alt>
               </div>
-              <div class="download-group" v-show="downloadDetail.inProgress === true">
-                <div class="download-group-txt">{{downloadDetail.current}}%</div>
-                <img class="download-png" src="../../assets/img/content/downloading.png" alt>
+              <div id="downloading-bg1" class="download-group-bg" v-show="downloadDetail.inProgress === true">
+                <div id="downloading-bg2" class="download-progress" :style="{width:downloadDetail.current + '%'}"></div>
               </div>
             </a>
           </div>
@@ -279,14 +278,15 @@ export default {
     },
     startDownload() {
       this.downloadDetail.current = 0;
-
       this.downloadDetail.inProgress = true;
+      this.setDownloadProgress(0);
     },
     progressCallback(e) {
       let percentCompleted = Math.round((e.loaded * 100) / e.total);
       percentCompleted === 100? this.downloadDetail.cnt+=1: this.downloadDetail.cnt+=0;
-
       this.downloadDetail.current = (this.downloadDetail.cnt / this.listLen * 100).toFixed();
+
+      this.setDownloadProgress(this.downloadDetail.current);
 
       if(this.downloadDetail.cnt === this.listLen) {
         this.downloadDetail.cnt = 0;
@@ -294,6 +294,14 @@ export default {
         this.downloadDetail.inProgress = false;
         console.log('--- over ---');
       }
+    },
+    setDownloadProgress(val) {
+      let str = val + '%';
+
+      let bg1 = document.getElementById('downloading-bg1');
+      bg1.setAttribute('data-beforeDown', str);
+      let bg2 = document.getElementById('downloading-bg2');
+      bg2.setAttribute('data-beforeDown', str);
     },
     onSwitch() {
       this.playerShow = !this.playerShow;
@@ -592,17 +600,50 @@ export default {
 .player-list > .sub > .download > a {
   display: block;
 }
+.player-list > .sub > .download > a > .download-group-bg {
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #f14250;
+  width: 114px;
+  height: 34px;
+  position: relative;
+}
+.player-list > .sub > .download > a > .download-group-bg::before {
+  content: attr(data-beforeDown);
+  position: absolute;
+  font-size: 18px;
+  top: 8px;
+  left: 50px;
+  color: #f14250;
+  border-radius: 10px;
+}
+.player-list > .sub > .download > a > .download-group-bg > .download-progress {
+  width: 0%;
+  height: 34px;
+  position: absolute;
+  background: #f14250;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.player-list
+  > .sub
+  > .download
+  > a
+  > .download-group-bg
+  > .download-progress::before {
+  content: attr(data-beforeDown);
+  position: absolute;
+  top: 8px;
+  left: 50px;
+  font-size: 18px;
+  color: #ffffff;
+}
 .download-group {
   position: relative;
   display: inline-block;
 }
-.download-group-txt {
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
-  text-align: center;
-}
 .download-png {
+  position: relative;
   width: 114px;
   height: 34px;
 }
