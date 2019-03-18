@@ -223,12 +223,12 @@ export default {
           uri: require('../../assets/img/home/new-product-4.png')
         },
         {
-          name: 'F6S-TM',
+          name: 'G9',
           id: 1,
-          title: '火火兔F6S·天猫精灵版',
-          detail1: '带娃新知识 早教更省事',
-          detail2: '家长和宝宝互动的贴心小雨伞',
-          uri: require('../../assets/img/home/new-product-2.png')
+          title: 'AI早教智能机器人G9系列',
+          detail1: '快乐早教，从唤醒小兔开始',
+          detail2: '让人机对话更自然的语音机器人',
+          uri: require('../../assets/img/home/new-product-6.png')
         },
         {
           name: 'I9',
