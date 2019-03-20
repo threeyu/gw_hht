@@ -123,7 +123,7 @@ export const contentApi = {
   },
   // 下载音频资源
   getAudioResource(obj) {
-    let downloadUrl = url.audioDownload + obj.encodeName;
+    let downloadUrl = url.audioDownload + obj.encodeName + '?appKey=A01A6B3988EAC607&type=gw_audio';
     let config = {
       responseType: 'arraybuffer',
       onDownloadProgress: obj.onProgressCallback

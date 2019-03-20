@@ -95,8 +95,16 @@
               <div v-show="downloadDetail.inProgress !== true">
                 <img class="download-png" src="../../assets/img/content/batch-download.png" alt>
               </div>
-              <div id="downloading-bg1" class="download-group-bg" v-show="downloadDetail.inProgress === true">
-                <div id="downloading-bg2" class="download-progress" :style="{width:downloadDetail.current + '%'}"></div>
+              <div
+                id="downloading-bg1"
+                class="download-group-bg"
+                v-show="downloadDetail.inProgress === true"
+              >
+                <div
+                  id="downloading-bg2"
+                  class="download-progress"
+                  :style="{width:downloadDetail.current + '%'}"
+                ></div>
               </div>
             </a>
           </div>
@@ -152,8 +160,9 @@ export default {
       },
       isAudoPlay: false,
       isSelect: {
-        all: false,
-        list: []
+        all: false,// 是否全选
+        list: [],// 打勾以及未打勾
+        checkLen: 0,// 打勾的数量
       },
       // UI
       playerShowCls: 'player-transform-show',
@@ -229,11 +238,12 @@ export default {
   },
   methods: {
     // true/false
-    setSelect(val) {
-      this.isSelect.all = val;
+    setSelect(bl) {
+      this.isSelect.all = bl;
       for(let i = 0; i < this.listLen; ++i) {
-        this.isSelect.list[i] = val;
+        this.isSelect.list[i] = bl;
       }
+      this.isSelect.checkLen = bl === true? this.listLen : 0;
     },
     onAllSelect() {
       this.isSelect.all === true? this.setSelect(false) : this.setSelect(true);
@@ -248,6 +258,7 @@ export default {
           cnt++;
         }
       }
+      this.isSelect.checkLen = this.listLen - cnt;
       if(cnt === this.listLen) {
         this.isSelect.all = false;
       }
@@ -258,7 +269,7 @@ export default {
       }
 
       let allList = [];
-      for(let i = 0; i < this.listLen; ++i) {
+      for(let i = 0; i < this.isSelect.checkLen; ++i) {
         if(this.isSelect.list[i] === true) {
           let _name = this.audioPlayList.songList[i].txt;
           let _url = this.audioPlayList.songList[i].uri;
@@ -284,11 +295,11 @@ export default {
     progressCallback(e) {
       let percentCompleted = Math.round((e.loaded * 100) / e.total);
       percentCompleted === 100? this.downloadDetail.cnt+=1: this.downloadDetail.cnt+=0;
-      this.downloadDetail.current = (this.downloadDetail.cnt / this.listLen * 100).toFixed();
+      this.downloadDetail.current = (this.downloadDetail.cnt / this.isSelect.checkLen * 100).toFixed();
 
       this.setDownloadProgress(this.downloadDetail.current);
 
-      if(this.downloadDetail.cnt === this.listLen) {
+      if(this.downloadDetail.cnt === this.isSelect.checkLen) {
         this.downloadDetail.cnt = 0;
         this.downloadDetail.current = 0;
         this.downloadDetail.inProgress = false;
@@ -316,8 +327,8 @@ export default {
       let _arr = _url.split('/');
       let _fileName = _arr[_arr.length - 1];
 
-      // this.$store.dispatch('audioDownload', { songName: _name, encodeName: _fileName });
-      window.open(_url);
+      this.$store.dispatch('audioDownload', { songName: _name, encodeName: _fileName });
+    //   window.open(_url);
     },
     onPop() {
       this.isPop = !this.isPop;
