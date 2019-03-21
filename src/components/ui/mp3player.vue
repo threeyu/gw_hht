@@ -269,7 +269,7 @@ export default {
       }
 
       let allList = [];
-      for(let i = 0; i < this.isSelect.checkLen; ++i) {
+      for(let i = 0; i < this.listLen; ++i) {
         if(this.isSelect.list[i] === true) {
           let _name = this.audioPlayList.songList[i].txt;
           let _url = this.audioPlayList.songList[i].uri;
@@ -328,7 +328,7 @@ export default {
       let _fileName = _arr[_arr.length - 1];
 
       this.$store.dispatch('audioDownload', { songName: _name, encodeName: _fileName });
-    //   window.open(_url);
+    //   window.open(_url + '?appKey=A01A6B3988EAC607&type=gw_audio');
     },
     onPop() {
       this.isPop = !this.isPop;
