@@ -4,6 +4,29 @@
       <img v-lazy="bannerList[0]" class="banner" alt="">
     </div>
 
+    <div class="bg-grey">
+      <div class="container">
+
+        <div class="title">
+          <p>NEW PRODUCTS</p>
+          <p>新品速递</p>
+        </div>
+
+        <!-- swiper -->
+        <swiper class="new-product" :options="productSwiper">
+          <swiper-slide v-for="(item, index) in newProList" :key="index">
+            <img v-lazy="item.uri" alt="">
+            <div class="new-product-title">{{item.title}}</div>
+            <div class="new-product-detail">{{item.detail1}}<br>{{item.detail2}}</div>
+            <button type="button" class="btn" @click="onDetail(item)">了解详情 ></button>
+          </swiper-slide>
+          <!-- <div class="swiper-button-prev" slot="button-prev"></div>
+          <div class="swiper-button-next" slot="button-next"></div> -->
+        </swiper>
+
+      </div>
+    </div>
+
     <div class="bg-white">
       <div class="container">
 
@@ -24,29 +47,6 @@
 
           </div>
         </div>
-
-      </div>
-    </div>
-
-    <div class="bg-grey">
-      <div class="container">
-
-        <div class="title">
-          <p>NEW PRODUCTS</p>
-          <p>新品速递</p>
-        </div>
-
-        <!-- swiper -->
-        <swiper class="new-product" :options="productSwiper">
-          <swiper-slide v-for="(item, index) in newProList" :key="index">
-            <img v-lazy="item.uri" alt="">
-            <div class="new-product-title">{{item.title}}</div>
-            <div class="new-product-detail">{{item.detail1}}<br>{{item.detail2}}</div>
-            <button type="button" class="btn" @click="onDetail(item)">了解详情 ></button>
-          </swiper-slide>
-          <!-- <div class="swiper-button-prev" slot="button-prev"></div>
-          <div class="swiper-button-next" slot="button-next"></div> -->
-        </swiper>
 
       </div>
     </div>
@@ -215,12 +215,12 @@ export default {
       ],
       newProList: [// id 与 productStore.proIconList 中的id对应
         {
-          name: 'S5',
-          id: 4,
-          title: '火火兔AI视频电话手表S5',
-          detail1: '能看到妈妈的儿童4G电话手表',
-          detail2: '儿童电话手表 就要能视频的',
-          uri: require('../../assets/img/home/new-product-4.png')
+          name: 'J7',
+          id: 1,
+          title: '火火兔双语早教机器人J7',
+          detail1: '抓住语言发育敏感期',
+          detail2: '科学5阶段教会宝宝说英语',
+          uri: require('../../assets/img/home/new-product-7.png')
         },
         {
           name: 'G9',
