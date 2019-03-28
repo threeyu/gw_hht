@@ -327,8 +327,8 @@ export default {
       let _arr = _url.split('/');
       let _fileName = _arr[_arr.length - 1];
 
-      this.$store.dispatch('audioDownload', { songName: _name, encodeName: _fileName });
-    //   window.open(_url + '?appKey=A01A6B3988EAC607&type=gw_audio');
+    //   this.$store.dispatch('audioDownload', { songName: _name, encodeName: _fileName });
+      window.open(_url + '?appKey=A01A6B3988EAC607&type=gw_audio');
     },
     onPop() {
       this.isPop = !this.isPop;
