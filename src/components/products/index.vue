@@ -2,7 +2,7 @@
   <!-- 产品管理 -->
   <div class="content" ref="content">
 
-    <router-link :to="{name: 'productDetail', query: { name: 'F6S-TM' }}">
+    <router-link :to="{name: 'productDetail', query: { name: 'J7' }}">
       <img v-lazy="bannerList[0]" class="banner" alt="">
     </router-link>
 
@@ -79,7 +79,7 @@ export default {
   data() {
     return {
       bannerList: [
-        require('../../assets/img/products/banner.png')
+        require('../../assets/img/products/banner.jpg')
       ],
       isFixed: false,
       ticking: false,

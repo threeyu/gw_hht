@@ -157,7 +157,7 @@ export default {
   data() {
     return {
       bannerList: [
-        require('../../assets/img/home/banner-1.png'),
+        require('../../assets/img/home/banner-1.jpg'),
         require('../../assets/img/home/banner-2.png'),
         require('../../assets/img/home/banner-3.png'),
         require('../../assets/img/home/banner-4.png'),
