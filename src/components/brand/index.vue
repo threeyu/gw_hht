@@ -51,8 +51,8 @@ export default {
         { uri: require('../../assets/img/brand/bg-1.png'), id: 'about'},
         { uri: require('../../assets/img/brand/bg-2.png'), id: 'growth'},
         { uri: require('../../assets/img/brand/bg-3.png'), id: 'product'},
-        { uri: require('../../assets/img/brand/bg-4.png'), id: 'honor'},
-        { uri: require('../../assets/img/brand/bg-5.png'), id: 'content'}
+        { uri: require('../../assets/img/brand/bg-4.jpg'), id: 'honor'},
+        { uri: require('../../assets/img/brand/bg-5.jpg'), id: 'content'}
       ],
       isFixed: false,
       ticking: false,
