@@ -1,8 +1,22 @@
 <template>
   <div>
-    <div class="bg-white">
+    <!-- <div class="bg-white">
       <img v-lazy="bannerList[0]" class="banner" alt="">
-    </div>
+    </div> -->
+    <!-- swiper -->
+    <swiper class="bg-white" :options="homeBannerSwiper">
+        <swiper-slide v-for="(item, index) in homeBannerList" :key="index">
+            <div v-if="item.link === '#'">
+                <img v-lazy="item.uri" class="banner" alt="">
+            </div>
+            <div v-else>
+                <a :href="item.link" target="_blank">
+                    <img v-lazy="item.uri" class="banner" alt="">
+                </a>
+            </div>
+            
+        </swiper-slide>
+    </swiper>
 
     <div class="bg-grey">
       <div class="container">
@@ -252,6 +266,28 @@ export default {
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
+        },
+      },
+      homeBannerList: [
+          {
+              uri: require('../../assets/img/home/banner-2.png'),
+              link: "https://weibo.com/2656308101/HoFIH1Err?filter=hot&root_comment_id=0&type=comment#_rnd1554776669543"
+          },
+          {
+              uri: require('../../assets/img/home/banner-1.jpg'),
+              link: "#"
+          }
+      ],
+      homeBannerSwiper: {
+        spaceBetween: 180,
+        centeredSlides: true,
+        autoplay: {
+            delay: 8000,
+            disableOnInteraction: false
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          dynamicBullets: true
         },
       }
     }
