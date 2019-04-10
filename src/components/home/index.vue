@@ -7,11 +7,11 @@
     <swiper class="bg-white" :options="homeBannerSwiper">
         <swiper-slide v-for="(item, index) in homeBannerList" :key="index">
             <div v-if="item.link === '#'">
-                <img v-lazy="item.uri" class="banner" alt="">
+                <img :src="item.uri" class="banner" alt="">
             </div>
             <div v-else>
                 <a :href="item.link" target="_blank">
-                    <img v-lazy="item.uri" class="banner" alt="">
+                    <img :src="item.uri" class="banner" alt="">
                 </a>
             </div>
             
