@@ -3,7 +3,7 @@
   <div class="content" ref="content">
 
     <router-link :to="{name: 'productDetail', query: { name: 'J7' }}">
-      <img v-lazy="bannerList[0]" class="banner" alt="">
+      <img :src="bannerList[0]" class="banner" alt="">
     </router-link>
 
     <div class="container">

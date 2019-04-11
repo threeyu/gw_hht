@@ -1,7 +1,7 @@
 <template>
   <!-- 售后管理 -->
   <div class="main">
-    <img v-lazy="bannerList[0]" class="banner" alt="">
+    <img :src="bannerList[0]" class="banner" alt="">
 
     <div class="container">
       <div class="title">

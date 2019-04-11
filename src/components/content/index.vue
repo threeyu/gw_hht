@@ -2,7 +2,7 @@
   <!-- 内容管理 -->
   <div class="bg-white">
 
-    <img v-lazy="bannerList[0]" class="banner" alt="">
+    <img :src="bannerList[0]" class="banner" alt="">
 
     <div class="container">
       <div class="row title-pos">

@@ -66,7 +66,7 @@
     </div>
 
     <div class="bg-white">
-      <img v-lazy="bannerList[2]" class="banner" alt="">
+      <img :src="bannerList[2]" class="banner" alt="">
     </div>
 
     <div class="bg-white" style="padding-bottom:78px;">
@@ -102,7 +102,7 @@
 
     <div class="bg-white">
       <div class="gallery">
-        <img v-lazy="bannerList[3]" class="banner" alt="">
+        <img :src="bannerList[3]" class="banner" alt="">
         <div class="gallery-info">
           <img v-lazy="bannerList[4]" class="banner" alt="">
           <div class="overlay" @click="onJump('brand')">
@@ -237,7 +237,7 @@ export default {
           uri: require('../../assets/img/home/new-product-7.png')
         },
         {
-          name: 'G9',
+          name: 'G9_Pro',
           id: 1,
           title: 'AI早教智能机器人G9系列',
           detail1: '快乐早教，从唤醒小兔开始',
@@ -245,11 +245,11 @@ export default {
           uri: require('../../assets/img/home/new-product-6.png')
         },
         {
-          name: 'I9',
+          name: 'I9S',
           id: 2,
-          title: '火火兔英语早教机器人I9',
-          detail1: '培养孩子的英语学习兴趣',
-          detail2: '寓教于乐、孩子的学习利器',
+          title: '火火兔AR教育机器人I9S',
+          detail1: '开启孩子的认知之旅',
+          detail2: '全新AR互动教学，让学习更简单',
           uri: require('../../assets/img/home/new-product-5.png')
         }
       ],
