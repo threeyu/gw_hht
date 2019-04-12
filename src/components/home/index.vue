@@ -16,6 +16,7 @@
             </div>
             
         </swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
 
     <div class="bg-grey">
@@ -34,8 +35,6 @@
             <div class="new-product-detail">{{item.detail1}}<br>{{item.detail2}}</div>
             <button type="button" class="btn" @click="onDetail(item)">了解详情 ></button>
           </swiper-slide>
-          <!-- <div class="swiper-button-prev" slot="button-prev"></div>
-          <div class="swiper-button-next" slot="button-next"></div> -->
         </swiper>
 
       </div>
@@ -257,21 +256,15 @@ export default {
         slidesPerView: 3,
         spaceBetween: 75,
         slidesPerGroup: 1,
-        // loop: true,
-        // loopFillGroupWithBlank: true,
         pagination: {
           el: '.swiper-pagination',
           clickable: true
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
         },
       },
       homeBannerList: [
           {
               uri: require('../../assets/img/home/banner-2.png'),
-              link: "https://weibo.com/2656308101/HoFIH1Err?filter=hot&root_comment_id=0&type=comment#_rnd1554776669543"
+              link: "https://m.weibo.cn/2656308101/4360001869032304"
           },
           {
               uri: require('../../assets/img/home/banner-1.jpg'),
@@ -421,10 +414,6 @@ export default {
   transform: scale(1.2);
   -webkit-transition: all 0.6s;
   transition: all 0.6s;
-}
-.swiper-button-prev,
-.swiper-button-next {
-  top: 30%;
 }
 .gallery {
   position: relative;
@@ -582,4 +571,8 @@ a > p {
   background-color: #c9adeb;
 }
 </style>
-
+<style>
+.bg-white .swiper-pagination .swiper-pagination-bullet-active {
+    background: #ff0000;
+}
+</style>
