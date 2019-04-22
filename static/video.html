@@ -312,22 +312,9 @@
 				autoplay: true,
 				show_related: false,
 				events: {
-					onPlayEnd: function () {
-
-						if (_videoId < _list_length) {
-
-							var next_video_id = _videoId + 1;
-
-							location.href = "video.html?v_id=" + _animeId + "&episode=" + next_video_id;
-
-						}
-
-					},
-					onPlayStart: function () {
-					},
-					onPlayerReady: function () {
-
-					}
+					onPlayEnd: function () {if (_videoId < _list_length) {var next_video_id = _videoId + 1;location.href = "video.html?v_id=" + _animeId + "&episode=" + next_video_id;}},
+					onPlayStart: function () {},
+					onPlayerReady: function () {}
 				}
 			});
 

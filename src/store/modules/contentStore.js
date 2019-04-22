@@ -209,9 +209,15 @@ const actions = {
     commit(TYPE.CONTENT_RESOURCE_REQUEST);
 
     let _genre = data.tagId === 0 ? '' : state.conVideoTagList[data.tagId].id;
+    let _reverseId;
+    if(data.sortId === 0) {
+        _reverseId = 1;
+    } else if(data.sortId === 1) {
+        _reverseId = 0;
+    }
     let param = {
       genre: _genre,
-      episodeCount: data.sortId
+      episodeCount: _reverseId,
     }
     try {
       let res = await contentApi.getVideoById(param);

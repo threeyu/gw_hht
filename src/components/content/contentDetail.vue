@@ -198,7 +198,12 @@ export default {
     play() {
       this.$store.dispatch('setIsPlaying', true);
     },
-    // 请求store
+    /**
+     * 请求store
+     * @param reqId 查找id 0内容页音频列表 1内容页视频列表
+     * @param stateData 二级导航状态：titleId:音视频 tagId:tag标签 sortId:导航排序
+     * @param listData tagId:视频类型 sortId:最新/最热
+     */
     reqData(reqId, stateData, listData) {
       this.pageList.curPage = 1;
 

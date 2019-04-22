@@ -57,7 +57,7 @@
       <a class="player-next" @click="onChangeSong('next')">
         <img src="../../assets/img/content/btn-next.png" alt>
       </a>
-      
+
       <a class="player-switch" @click="onSwitch()">
         <img :src="btnLR.pointer" alt>
       </a>
@@ -92,18 +92,18 @@
           </div>
           <div class="download">
             <a @click="onAllDownload()">
-              <div v-show="downloadDetail.inProgress !== true">
+              <div v-show="batchDownload.inProgress !== true">
                 <img class="download-png" src="../../assets/img/content/batch-download.png" alt>
               </div>
               <div
                 id="downloading-bg1"
                 class="download-group-bg"
-                v-show="downloadDetail.inProgress === true"
+                v-show="batchDownload.inProgress === true"
               >
                 <div
                   id="downloading-bg2"
                   class="download-progress"
-                  :style="{width:downloadDetail.current + '%'}"
+                  :style="{width:(this.batchDownload.current / this.batchDownload.total * 100).toFixed() + '%'}"
                 ></div>
               </div>
             </a>
@@ -114,7 +114,7 @@
         </div>
 
         <div class="song">
-          <div class="detailList" ref="detailList" @mousewheel="onMouseScroll()">
+          <div class="detailList" ref="detailList" @wheel.prevent="onMouseScroll()">
             <ul class="left">
               <li v-for="(item, index) in audioPlayList.songList" :key="index">
                 <a class="sel-img" @click="onPieceSelect(index)">
@@ -149,15 +149,16 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { checkBrower } from '../../utils'
 export default {
   props: ['posSty'],
   data() {
     return {
-      downloadDetail: {
-        inProgress: false,
-        cnt: 0,
-        current: 0,
-      },
+    //   downloadDetail: {
+    //     inProgress: false,
+    //     cnt: 0,
+    //     current: 0,
+    //   },
       isAudoPlay: false,
       isSelect: {
         all: false,// 是否全选
@@ -218,7 +219,8 @@ export default {
       'currentTime',
       'leftTime',
       'indicatorPosition',
-      'curSongId'
+      'curSongId',
+      'batchDownload',
     ]),
     mp3Url() {
       return this.audioPlayList.songList[this.curSongId].uri;
@@ -232,6 +234,12 @@ export default {
 
     // audio album
     this.$store.dispatch('getAudioAlbumList');
+  },
+  updated() {
+      if(this.batchDownload.inProgress) {
+          let val = (this.batchDownload.current / this.batchDownload.total * 100).toFixed();
+          this.setDownloadProgress(val);
+      }
   },
   destroyed() {
     this.stop();
@@ -264,7 +272,7 @@ export default {
       }
     },
     onAllDownload() {
-      if(this.downloadDetail.inProgress) {
+      if(this.batchDownload.inProgress) {
         return;
       }
 
@@ -275,7 +283,8 @@ export default {
           let _url = this.audioPlayList.songList[i].uri;
           let _arr = _url.split('/');
           let _fileName = _arr[_arr.length - 1];
-          allList.push({ songName: _name, encodeName: _fileName, onProgressCallback: this.progressCallback });
+        //   allList.push({ songName: _name, encodeName: _fileName, onProgressCallback: this.progressCallback.bind(this) });
+          allList.push({ songName: _name, encodeName: _fileName });
         }
       }
       
@@ -284,28 +293,28 @@ export default {
         return;
       }
 
-      this.startDownload();
+    //   this.startDownload();
       this.$store.dispatch('audioAllDownload', allList);
     },
-    startDownload() {
-      this.downloadDetail.current = 0;
-      this.downloadDetail.inProgress = true;
-      this.setDownloadProgress(0);
-    },
-    progressCallback(e) {
-      let percentCompleted = Math.round((e.loaded * 100) / e.total);
-      percentCompleted === 100? this.downloadDetail.cnt+=1: this.downloadDetail.cnt+=0;
-      this.downloadDetail.current = (this.downloadDetail.cnt / this.isSelect.checkLen * 100).toFixed();
+    // startDownload() {
+    //   this.downloadDetail.current = 0;
+    //   this.downloadDetail.inProgress = true;
+    //   this.setDownloadProgress(0);
+    // },
+    // progressCallback(e) {
+    //   let percentCompleted = Math.round((e.loaded * 100) / e.total);
+    //   percentCompleted === 100? this.downloadDetail.cnt+=1: this.downloadDetail.cnt+=0;
+    //   this.downloadDetail.current = (this.downloadDetail.cnt / this.isSelect.checkLen * 100).toFixed();
 
-      this.setDownloadProgress(this.downloadDetail.current);
+    //   this.setDownloadProgress(this.downloadDetail.current);
 
-      if(this.downloadDetail.cnt === this.isSelect.checkLen) {
-        this.downloadDetail.cnt = 0;
-        this.downloadDetail.current = 0;
-        this.downloadDetail.inProgress = false;
-        console.log('--- over ---');
-      }
-    },
+    //   if(this.downloadDetail.cnt === this.isSelect.checkLen) {
+    //     this.downloadDetail.cnt = 0;
+    //     this.downloadDetail.current = 0;
+    //     this.downloadDetail.inProgress = false;
+    //     console.log('--- over ---');
+    //   }
+    // },
     setDownloadProgress(val) {
       let str = val + '%';
 
@@ -328,7 +337,19 @@ export default {
       let _fileName = _arr[_arr.length - 1];
 
     //   this.$store.dispatch('audioDownload', { songName: _name, encodeName: _fileName });
-      window.open(_url + '?appKey=A01A6B3988EAC607&type=gw_audio');
+    //   window.open(_url + '?appKey=A01A6B3988EAC607&type=gw_audio');
+        let webInfo = checkBrower();
+        switch(webInfo){
+            case"Safari":
+            case"FF":
+            case"IE":
+                window.open(_url + '?appKey=A01A6B3988EAC607&type=gw_audio');
+                break;
+            case"Chrome":
+            case"Opera":
+                this.$store.dispatch('audioDownload', { songName: _name, encodeName: _fileName });
+                break;
+        }
     },
     onPop() {
       this.isPop = !this.isPop;
@@ -370,8 +391,8 @@ export default {
     onMouseScroll() {
       if (this.listLen > this.maxRow) {
         event.preventDefault();
-        let _delta = (event.wheelDelta && (event.wheelDelta > 0 ? 1 : -1)) || (event.detail && (event.detail > 0 ? -1 : 1));
 
+        let _delta = (event.wheelDelta && (event.wheelDelta > 0 ? 1 : -1)) || (event.deltaY && (event.deltaY > 0 ? -1 : 1));
         if (_delta > 0) {
           if (this.scrollY === 0) {
             return;
@@ -385,6 +406,7 @@ export default {
           this.scrollY -= this.distance;
         }
         this.$refs.detailList.style.top = this.scrollData;
+        
 
       }
     }
@@ -602,10 +624,14 @@ export default {
   width: 60%;
   float: left;
   padding: 7px 0;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .player-list > .sub > .download {
   width: 20%;
   float: left;
+  padding-left: 10px;
   cursor: pointer;
 }
 .player-list > .sub > .download > a {
@@ -690,6 +716,7 @@ export default {
   float: left;
   width: 80%;
   font-size: 16px;
+  overflow: hidden;
 }
 .player-list > .song .mid > li {
   cursor: pointer;

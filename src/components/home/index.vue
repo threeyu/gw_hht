@@ -21,7 +21,6 @@
 
     <div class="bg-grey">
       <div class="container">
-
         <div class="title">
           <p>NEW PRODUCTS</p>
           <p>新品速递</p>
@@ -30,19 +29,21 @@
         <!-- swiper -->
         <swiper class="new-product" :options="productSwiper">
           <swiper-slide v-for="(item, index) in newProList" :key="index">
-            <img v-lazy="item.uri" alt="">
+            <img v-lazy="item.uri" alt>
             <div class="new-product-title">{{item.title}}</div>
-            <div class="new-product-detail">{{item.detail1}}<br>{{item.detail2}}</div>
+            <div class="new-product-detail">
+              {{item.detail1}}
+              <br>
+              {{item.detail2}}
+            </div>
             <button type="button" class="btn" @click="onDetail(item)">了解详情 ></button>
           </swiper-slide>
         </swiper>
-
       </div>
     </div>
 
     <div class="bg-white">
       <div class="container">
-
         <div class="title">
           <p>PRODUCTS CATEGORY</p>
           <p>产品类别</p>
@@ -50,27 +51,30 @@
 
         <div class="row">
           <div class="product-list">
-            <div v-for="(item, index) in proIcon" class="card-box" :class="item.box_color" @click="reqProData(index)" :key="index">
+            <div
+              v-for="(item, index) in proIcon"
+              class="card-box"
+              :class="item.box_color"
+              @click="reqProData(index)"
+              :key="index"
+            >
               <div class="inline-box">
                 <p>{{item.title_cn}}</p>
                 <p>{{item.title_en}}</p>
               </div>
-              <img v-lazy="item.uri" class="banner" alt="">
+              <img v-lazy="item.uri" class="banner" alt>
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
 
     <div class="bg-white">
-      <img :src="bannerList[2]" class="banner" alt="">
+      <img :src="bannerList[2]" class="banner" alt>
     </div>
 
     <div class="bg-white" style="padding-bottom:78px;">
       <div class="container">
-
         <div class="title">
           <p>NEWS</p>
           <p>品牌资讯</p>
@@ -79,7 +83,7 @@
         <div class="row" v-for="(item, index) in brandNewsList" :key="index">
           <div class="brand-content" v-if="index < 4">
             <div class="brand-left">
-              <img v-lazy="item.uri" class="banner" alt="">
+              <img v-lazy="item.uri" class="banner" alt>
             </div>
 
             <div class="brand-mid">
@@ -95,17 +99,16 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
     <div class="bg-white">
       <div class="gallery">
-        <img :src="bannerList[3]" class="banner" alt="">
+        <img :src="bannerList[3]" class="banner" alt>
         <div class="gallery-info">
-          <img v-lazy="bannerList[4]" class="banner" alt="">
+          <img v-lazy="bannerList[4]" class="banner" alt>
           <div class="overlay" @click="onJump('brand')">
-            <img src="../../assets/img/home/banner-icon.png" class="banner" alt="">
+            <img src="../../assets/img/home/banner-icon.png" class="banner" alt>
           </div>
         </div>
       </div>
@@ -113,7 +116,6 @@
 
     <div class="bg-white">
       <div class="container">
-
         <div class="title">
           <p>CONTACT US</p>
           <p>联系我们</p>
@@ -121,38 +123,39 @@
 
         <div class="row">
           <div class="contact-icon">
-            <a href="https://hhtmy.tmall.com/view_shop.htm?spm=a220m.1000858.0.0.156117a6FTph2H&shop_id=105771901&rn=e1d7fd91d6da3bdb4defc160a86e9e36" target="_blank">
-              <img src="../../assets/img/home/contact-1.png" alt="">
+            <a
+              href="https://hhtmy.tmall.com/view_shop.htm?spm=a220m.1000858.0.0.156117a6FTph2H&shop_id=105771901&rn=e1d7fd91d6da3bdb4defc160a86e9e36"
+              target="_blank"
+            >
+              <img src="../../assets/img/home/contact-1.png" alt>
               <p>天猫旗舰店</p>
             </a>
           </div>
 
           <div class="contact-icon">
             <a href="https://mall.jd.com/index-1000086529.html" target="_blank">
-              <img src="../../assets/img/home/contact-2.png" alt="">
+              <img src="../../assets/img/home/contact-2.png" alt>
               <p>京东旗舰店</p>
             </a>
           </div>
 
           <div class="contact-icon">
             <a href="https://weibo.com/u/2656308101?is_all=1" target="_blank">
-              <img src="../../assets/img/home/contact-3.png" alt="">
+              <img src="../../assets/img/home/contact-3.png" alt>
               <p>官方微博</p>
             </a>
           </div>
 
           <div class="contact-icon">
             <span>
-              <img src="../../assets/img/home/contact-4.png" alt="">
-              <img src="../../assets/img/home/wx-qr.png" class="qr" alt="">
+              <img src="../../assets/img/home/contact-4.png" alt>
+              <img src="../../assets/img/home/wx-qr.png" class="qr" alt>
               <p>官方微信</p>
             </span>
           </div>
         </div>
-
       </div>
     </div>
-
   </div>
 </template>
 
@@ -264,7 +267,7 @@ export default {
       homeBannerList: [
           {
               uri: require('../../assets/img/home/banner-2.png'),
-              link: "https://m.weibo.cn/2656308101/4360001869032304"
+              link: "https://mp.weixin.qq.com/s?__biz=MjM5MjAwNTUzMQ==&mid=2257487080&idx=4&sn=27699223d4a2421836e1626d3a091f0a&chksm=a5d6c81c92a1410ad0c9a74a29e2f3bc8eb7e4ac1a7025cbd73f3235d6f20035b7116620d1a8&xtrack=1&scene=0&subscene=10000&clicktime=1555482147&ascene=7&devicetype=android-26&version=2700033c&nettype=WIFI&abtest_cookie=BAABAAoACwASABMABQAklx4AXJkeAM6ZHgDUmR4A3JkeAAAA&lang=zh_HK&pass_ticket=ZvWbKthvT%2FqJaj8CszNBtLuMI7oKye5fsy7%2FtTCzSteGIch82k8Ad38JhLJl%2B8Oo&wx_header=1"
           },
           {
               uri: require('../../assets/img/home/banner-1.jpg'),
